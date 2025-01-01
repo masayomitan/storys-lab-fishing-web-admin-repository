@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import { App } from './pages/_app';
+import type { Metadata } from "next"
+import { Geist, Geist_Mono } from "next/font/google"
+import "./globals.css"
+import { App } from './pages/_app'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -11,12 +11,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
+})
 
 export const metadata: Metadata = {
   title: "Story's Lab Fishing Management Console",
   description: "Provided by Story's",
-};
+}
 
 export default function RootLayout({
   children,
@@ -31,5 +31,5 @@ export default function RootLayout({
         </App>
       </body>
     </html>
-  );
+  )
 }

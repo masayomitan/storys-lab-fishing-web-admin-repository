@@ -1,9 +1,9 @@
 import { Box, Flex, Text, Link, VStack, HStack } from '@chakra-ui/react'
 import { ReactNode } from 'react'
-import SideBar from '@/components/parts/SideBar.tsx';
+import SideBar from '@/components/parts/SideBar'
 
 interface LayoutProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 const Dashboard = ({ children }: LayoutProps) => {
@@ -29,7 +29,7 @@ const Dashboard = ({ children }: LayoutProps) => {
         </Box>
       </Flex>
     </Flex>
-  );
-};
+  )
+}
 
 export default Dashboard
