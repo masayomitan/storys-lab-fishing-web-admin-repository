@@ -14,6 +14,8 @@ const getFishCategoryRows = (initialFishes: FishTableRowType[]) => {
       id: item.id,
       name: item.name,
       description: item.description,
+      created_at: item.created_at,
+      updated_at: item.updated_at,
     }
   })
   return results
@@ -25,6 +27,8 @@ const getRowsAfterDeleted = (data: FishTableRowType[]) => {
       id: item.id,
       name: item.name,
       description: item.description,
+      created_at: item.created_at,
+      updated_at: item.updated_at,
     }
   })
   return results

@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers'
 
 import config from '@/app/lib/config'
+import { fromDate } from '@internationalized/date'
 
 const DEFAULT_TIMEOUT = 120000
 const DEFAULT_RETRIES = 3
@@ -265,6 +266,47 @@ class ApiClient {
   ): Promise<SuccessResponse<T>> {
     return this.request<T>('DELETE', path, params, options)
   }
+
+  async uploadImage(
+    path: string,
+    file: any,
+    options?: RequestOptions
+  ): Promise<SuccessResponse<string>> {
+    const formData = new FormData()
+
+    file.images.forEach((imageFile: any) => {
+      formData.append('files', imageFile)
+    })
+
+    formData.append('image_type', file.image_type.toString())
+    console.log(formData)
+
+    const fetchOptions: RequestOptions = {
+      ...options,
+      method: 'POST',
+      body: formData,
+      headers: {
+        ...options?.headers,
+        // Content-Type はブラウザが自動で設定するので省略
+      },
+    }
+  
+    const response = await this.fetchWithErrorHandling(this.createUrl(path), fetchOptions)
+  
+    let jsonResponse: ApiResponse<string>
+    try {
+      jsonResponse = (await response.json()) as ApiResponse<string>
+    } catch (error) {
+      throw new Error('Failed to parse JSON response from image upload API.')
+    }
+  
+    if (!response.ok || jsonResponse.status < 200 || jsonResponse.status >= 300) {
+      throw new ApiError(jsonResponse)
+    }
+  
+    return jsonResponse
+  }
+
 }
 
 // APIクライアントのインスタンスを作成
