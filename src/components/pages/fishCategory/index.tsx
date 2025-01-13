@@ -3,7 +3,7 @@
 import { Box, Button, Text } from "@chakra-ui/react";
 import { useRouter } from 'next/navigation'
 
-import Layout from '../../../../../storys-lab-fishing-web-repository/src/components/parts/Layout/layout'
+// import Layout from '../../../../../storys-lab-fishing-web-repository/src/components/parts/Layout/layout'
 import FishCategoryCreate from '@/components/pages/fishCategory/create'
 
 import { useFishCategory } from "./logic"

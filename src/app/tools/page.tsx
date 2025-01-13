@@ -1,5 +1,5 @@
 import { Box, Text } from "@chakra-ui/react"
-import Layout from '../../../../storys-lab-fishing-web-repository/src/components/parts/Layout/layout'
+// import Layout from '../../../../storys-lab-fishing-web-repository/src/components/parts/Layout/layout'
 
 const ToolAdminPage = () => {
   return (
