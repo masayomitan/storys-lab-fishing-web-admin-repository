@@ -5,7 +5,7 @@ import { toaster } from '@/components/ui/toaster'
 import apiClient from '@/app/lib/apiClient'
 import { useRouter } from 'next/navigation'
 
-export const useCreateFish = () => {
+export const useUpdateFish = () => {
   const router = useRouter()
 
   const handleCreateRequest = useCallback(async (requestData: any) => {

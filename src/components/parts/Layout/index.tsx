@@ -1,13 +1,18 @@
 import { Box, Flex, Text, Link, VStack, HStack } from '@chakra-ui/react'
+import { ReactNode } from 'react'
+import Head from 'next/head'
 import SideBar from '@/components/parts/Sidebar'
 
 interface LayoutProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-const Dashboard = ({ children }: any) => {
+const Dashboard = ({ children }: LayoutProps) => {
   return (
     <Flex h='100vh'>
+      <Head>
+        <title>{'title'}</title>
+      </Head>
       <SideBar />
 
       {/* メインコンテンツ */}
@@ -16,7 +21,7 @@ const Dashboard = ({ children }: any) => {
         <Box bg='teal.500' p={4} color='white' boxShadow='sm'>
           <HStack justify='space-between'>
             <Text fontSize='xl' fontWeight='bold'>
-              ダッシュボード
+              ヘッダー
             </Text>
             <Text fontSize='sm'>Admin</Text>
           </HStack>

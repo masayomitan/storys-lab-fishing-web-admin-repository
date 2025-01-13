@@ -25,11 +25,11 @@ import {
 } from '@/components/ui/select'
 import { Field } from '@/components/ui/field'
 import { fishSchema } from './constant'
-import { useCreateFish } from './logic'
+import { useUpdateFish } from './logic'
 
 type FishFormData = z.infer<typeof fishSchema>
 
-const FishCreate = ({ fishCategories }: any) => {
+const FishUpdate = ({ fishCategories }: any) => {
   console.log(fishCategories)
   const mappedFishCategories = createListCollection({
     items: fishCategories.map((category: any) => ({
@@ -60,7 +60,7 @@ const FishCreate = ({ fishCategories }: any) => {
     },
   })
 
-  const { handleCreateRequest } = useCreateFish()
+  const { handleCreateRequest } = useUpdateFish()
 
   return (
     <Box p={6} bg='white' borderRadius='md' boxShadow='sm'>
@@ -256,4 +256,4 @@ const FishCreate = ({ fishCategories }: any) => {
   )
 }
 
-export default FishCreate
+export default FishUpdate

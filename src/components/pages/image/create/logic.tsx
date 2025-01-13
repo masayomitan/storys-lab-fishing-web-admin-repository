@@ -5,14 +5,15 @@ import { toaster } from '@/components/ui/toaster'
 import apiClient from '@/app/lib/apiClient'
 import { useRouter } from 'next/navigation'
 
-export const useCreateFish = () => {
+export const useUploadImage = () => {
   const router = useRouter()
 
-  const handleCreateRequest = useCallback(async (requestData: any) => {
+  const handleUploadRequest = useCallback(async (requestData: any) => {
     console.log(requestData)
+
     try {
       // API リクエスト
-      const response = await apiClient.post('/admin/fishes/create', requestData)
+      const response = await apiClient.uploadImage('/admin/images/upload', requestData)
 
       // 成功処理
       toaster.create({
@@ -20,7 +21,7 @@ export const useCreateFish = () => {
         type: 'success',
       })
       console.log('API Response:', response)
-      router.push('/fishes')
+      router.push('/images')
     } catch (error: any) {
       // エラー処理
       if (error instanceof Error) {
@@ -36,6 +37,6 @@ export const useCreateFish = () => {
   }, [])
 
   return {
-    handleCreateRequest,
+    handleUploadRequest,
   }
 }

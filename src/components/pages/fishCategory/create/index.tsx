@@ -39,8 +39,8 @@ const FishCategoryCreate = () => {
   } = useCreateFishCategory()
 
   return (
-    <Box p={6} bg="white" borderRadius="md" boxShadow="sm">
-      <Text fontSize="xl" fontWeight="bold" mb={4}>
+    <Box p={6} bg='white' borderRadius='md' boxShadow='sm'>
+      <Text fontSize='xl' fontWeight='bold' mb={4}>
         魚カテゴリー 登録
       </Text>
 
@@ -51,31 +51,31 @@ const FishCategoryCreate = () => {
           </Stack>
           <Fieldset.Content>
             {/* 名称 */}
-            <Field label="名称" invalid={!!errors.name}>
+            <Field label='名称' invalid={!!errors.name}>
               <Input
-                type="text"
-                placeholder="魚カテゴリーの名称を入力してください"
-                {...register("name")}
+                type='text'
+                placeholder='魚カテゴリーの名称を入力してください'
+                {...register('name')}
               />
               {errors.name && (
-                <Text color="red.500" fontSize="sm">
+                <Text color='red.500' fontSize='sm'>
                   {errors.name.message}
                 </Text>
               )}
             </Field>
 
             {/* 説明 */}
-            <Field label="説明">
+            <Field label='説明'>
               <Input
-                type="text"
-                placeholder="魚カテゴリーの説明を入力してください"
-                {...register("description")}
+                type='text'
+                placeholder='魚カテゴリーの説明を入力してください'
+                {...register('description')}
               />
             </Field>
           </Fieldset.Content>
         </Fieldset.Root>
 
-        <Button type="submit" colorScheme="blue" w="full" mt={4}>
+        <Button type='submit' colorScheme='blue' w='full' mt={4}>
           登録
         </Button>
       </form>

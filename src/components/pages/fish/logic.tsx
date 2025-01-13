@@ -7,6 +7,7 @@ import {
 } from 'react'
 import { useToastMessage } from '@/app/hooks/useToastMessage'
 import { FishTableRowType } from './constant'
+import { useRouter } from 'next/navigation'
 
 const getFishCategoryRows = (initialFishes: FishTableRowType[]) => {
   const results: FishTableRowType[] = initialFishes.map((item, index) => {
@@ -37,6 +38,7 @@ const getRowsAfterDeleted = (data: FishTableRowType[]) => {
 export const useFish = (
 	initialFishes: FishTableRowType[]
 ) => {
+  const router = useRouter()
 	const [tableRows, setTableRows] = useState<FishTableRowType[]>([])
 	const { successToast, errorToast } = useToastMessage()
 
@@ -45,8 +47,9 @@ export const useFish = (
   }, [initialFishes])
 
   const handleUpdateRequest = async (id: string) => {
-    console.log('go to update page')
+    router.push(`/fishes/update/${id}`)
   }
+  
 
 	const handleDeleteRequest = async (id: string) => {
     try {

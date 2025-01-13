@@ -1,9 +1,7 @@
-// app/fish-categories/page.tsx
 import { Box } from '@chakra-ui/react'
 import FishCategories from '@/components/pages/fishCategory/index'
 
-export const generateStaticParams = async () => {
-  console.log('Fetching from:', process.env.NEXT_PUBLIC_API_ENDPOINT)
+export const generateStaticParams = async (): Promise<{ id: string }[]> => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/mc/fish-categories`, {
     method: 'GET',
     headers: {
@@ -11,29 +9,27 @@ export const generateStaticParams = async () => {
     },
     cache: 'no-store',
   })
-  console.log(res)
+
   if (!res.ok) {
-    console.log('no!')
-    return false
+    return []
   }
 
   const fishCategories = await res.json()
-  
-  // 動的ルートが必要な場合は以下を返します
+
   return fishCategories.map((category: { id: number }) => ({
     id: category.id.toString(),
   }))
 }
 
 type FishCategoryPageProps = {
-  params: {
-    id?: string
-  }
+  params: Promise<{
+    id: string 
+  }>
 }
 
 const FishCategoryPage = async ({ params }: FishCategoryPageProps) => {
-  const { id } = params
-  console.log(id)
+  const { id } = await params
+
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/mc/fish-categories/${id}`, {
     method: 'GET',
     headers: {
@@ -41,11 +37,9 @@ const FishCategoryPage = async ({ params }: FishCategoryPageProps) => {
     },
     cache: 'no-store',
   })
-  console.log(res)
 
   if (!res.ok) {
-    console.log('no!')
-    return false
+    return <div>エラーが発生しました。</div>
   }
 
   const fishCategories = await res.json()

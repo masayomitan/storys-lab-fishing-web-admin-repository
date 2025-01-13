@@ -8,10 +8,10 @@ import { useRouter } from 'next/navigation'
 export const useCreateFishCategory = () => {
   const router = useRouter()
 
-  const handleCreateRequest = useCallback(async (fishCategory: any) => {
+  const handleCreateRequest = useCallback(async (requestData: any) => {
     try {
       // API リクエスト
-      const response = await apiClient.post('/admin/fish-categories/create', fishCategory)
+      const response = await apiClient.post('/admin/fish-categories/create', requestData)
 
       // 成功処理
       toaster.create({

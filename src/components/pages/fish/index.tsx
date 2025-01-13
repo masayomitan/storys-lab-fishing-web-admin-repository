@@ -15,7 +15,6 @@ const Fishes = ({
 }: any) => {
 	const router = useRouter()
 
-	console.log(fishes)
 	const {
 		tableRows,
 		handleUpdateRequest,
@@ -46,7 +45,7 @@ const Fishes = ({
 	]
 
 	const handleCreate = () => {
-    router.push('/fishes/create');
+    router.push('/fishes/create')
   }
 
   return (
