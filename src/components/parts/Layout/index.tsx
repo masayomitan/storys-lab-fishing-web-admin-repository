@@ -1,7 +1,7 @@
 import { Box, Flex, Text, HStack } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 import Head from 'next/head'
-import Sidebar from '@/components/parts/Sidebar'
+import Sidebar from '@/components/parts/Sidebar/index'
 
 interface LayoutProps {
   children: ReactNode
