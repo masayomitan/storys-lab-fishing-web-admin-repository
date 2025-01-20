@@ -15,7 +15,6 @@ import {
 import {
   SelectContent,
   SelectItem,
-  SelectLabel,
   SelectRoot,
   SelectTrigger,
   SelectValueText,
@@ -34,7 +33,12 @@ const ImageAdd = () => {
   const [images, setImages] = useState<File[]>([])
 
 
-  const { control, handleSubmit, watch, setValue } = useForm({
+  const { 
+    control,
+    handleSubmit,
+    // watch,
+    // setValue 
+  } = useForm({
     defaultValues: {
       imageMetadata: images.map(() => ({
         name: '',
@@ -43,6 +47,7 @@ const ImageAdd = () => {
     },
   })
   const mappedImages = createListCollection({
+     /* eslint-disable @typescript-eslint/no-explicit-any */
     items: IMAGE_TYPES.map((image_type: any) => ({
       label: image_type.label,
       value: image_type.value,
@@ -66,6 +71,7 @@ const ImageAdd = () => {
   })
 
   const { handleUploadRequest } = useUploadImage()
+   /* eslint-disable @typescript-eslint/no-explicit-any */
   const onSubmit = (data: any) => {
     const payload = {
       images,

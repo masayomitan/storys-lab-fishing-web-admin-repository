@@ -1,4 +1,3 @@
-// app/fish-categories/page.tsx
 import { Box } from '@chakra-ui/react'
 import FishCategoryCreate from '@/components/pages/fishCategory/create'
 

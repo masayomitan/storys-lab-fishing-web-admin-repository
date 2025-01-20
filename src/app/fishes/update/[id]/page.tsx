@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
 import FishUpdate from '@/components/pages/fish/update'
-import apiClient from '@/app/lib/apiClient'
+import apiClient from '@/lib/apiClient'
 import Layout from '@/components/parts/Layout'
 
 interface FishUpdatePageProps {
@@ -13,6 +13,7 @@ const FishUpdatePage = async ({ params }: FishUpdatePageProps) => {
   const { id } = await params
 
   // 魚カテゴリデータを取得
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const fishCategories = await apiClient.get<any[]>('/admin/fish-categories', {
     headers: {
       'Content-Type': 'application/json',
@@ -21,6 +22,7 @@ const FishUpdatePage = async ({ params }: FishUpdatePageProps) => {
   })
 
   // 指定された魚データを取得
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const fish = await apiClient.get<any[]>(`/admin/fishes/${id}`, {
     headers: {
       'Content-Type': 'application/json',

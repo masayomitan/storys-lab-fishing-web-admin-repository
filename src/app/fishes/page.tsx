@@ -1,10 +1,11 @@
-import { Box, Flex } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import Fishes from '@/components/pages/fish/index'
-import apiClient from '@/app/lib/apiClient'
+import apiClient from '@/lib/apiClient'
 import Layout from '@/components/parts/Layout'
 
 const FishPage = async () => {
 
+	/* eslint-disable @typescript-eslint/no-explicit-any */
 	const fishes = await apiClient.get<any[]>('/admin/fishes', {
 		headers: {
 			'Content-Type': 'application/json',

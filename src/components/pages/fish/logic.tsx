@@ -1,7 +1,6 @@
 'use client'
 
 import {
-  useCallback,
   useEffect,
   useState,
 } from 'react'
@@ -10,7 +9,7 @@ import { FishTableRowType } from './constant'
 import { useRouter } from 'next/navigation'
 
 const getFishCategoryRows = (initialFishes: FishTableRowType[]) => {
-  const results: FishTableRowType[] = initialFishes.map((item, index) => {
+  const results: FishTableRowType[] = initialFishes.map((item) => {
     return {
       id: item.id,
       name: item.name,
@@ -23,7 +22,7 @@ const getFishCategoryRows = (initialFishes: FishTableRowType[]) => {
 }
 
 const getRowsAfterDeleted = (data: FishTableRowType[]) => {
-  const results: FishTableRowType[] = data.map((item, index) => {
+  const results: FishTableRowType[] = data.map((item) => {
     return {
       id: item.id,
       name: item.name,
@@ -59,6 +58,7 @@ export const useFish = (
       setTableRows(formattedTableRows);
       successToast(`魚カテゴリーを削除しました`)
     } catch (error) {
+      console.error(error)
       errorToast('削除に失敗しました')
     }
   }

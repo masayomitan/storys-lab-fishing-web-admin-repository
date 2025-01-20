@@ -1,7 +1,6 @@
 'use client'
 
 import {
-  useCallback,
   useEffect,
   useState,
 } from 'react'
@@ -9,7 +8,7 @@ import { useToastMessage } from '@/app/hooks/useToastMessage'
 import { FishCategoryTableRowType } from './constant'
 
 const getFishCategoryRows = (initialFishCategories: FishCategoryTableRowType[]) => {
-  const results: FishCategoryTableRowType[] = initialFishCategories.map((item, index) => {
+  const results: FishCategoryTableRowType[] = initialFishCategories.map((item) => {
     return {
       id: item.id,
       name: item.name,
@@ -20,7 +19,7 @@ const getFishCategoryRows = (initialFishCategories: FishCategoryTableRowType[]) 
 }
 
 const getRowsAfterDeleted = (data: FishCategoryTableRowType[]) => {
-  const results: FishCategoryTableRowType[] = data.map((item, index) => {
+  const results: FishCategoryTableRowType[] = data.map((item) => {
     return {
       id: item.id,
       name: item.name,
@@ -41,7 +40,7 @@ export const useFishCategory = (
   }, [initialFishCategories])
 
   const handleUpdateRequest = async (id: string) => {
-    console.log('go to update page')
+    console.log(id)
   }
 
 	const handleDeleteRequest = async (id: string) => {
@@ -52,6 +51,7 @@ export const useFishCategory = (
       setTableRows(formattedTableRows);
       successToast(`魚カテゴリーを削除しました`)
     } catch (error) {
+      console.error(error)
       errorToast('削除に失敗しました')
     }
   }

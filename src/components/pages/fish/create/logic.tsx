@@ -2,12 +2,13 @@
 
 import { useCallback } from 'react'
 import { toaster } from '@/components/ui/toaster'
-import apiClient from '@/app/lib/apiClient'
+import apiClient from '@/lib/apiClient'
 import { useRouter } from 'next/navigation'
 
 export const useCreateFish = () => {
   const router = useRouter()
 
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const handleCreateRequest = useCallback(async (requestData: any) => {
     console.log(requestData)
     try {
@@ -21,6 +22,7 @@ export const useCreateFish = () => {
       })
       console.log('API Response:', response)
       router.push('/fishes')
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     } catch (error: any) {
       // エラー処理
       if (error instanceof Error) {

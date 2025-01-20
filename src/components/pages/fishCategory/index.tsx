@@ -1,10 +1,9 @@
 'use client'
 
-import { Box, Button, Text } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 import { useRouter } from 'next/navigation'
 
-// import Layout from '../../../../../storys-lab-fishing-web-repository/src/components/parts/Layout/layout'
-import FishCategoryCreate from '@/components/pages/fishCategory/create'
+// import FishCategoryCreate from '@/components/pages/fishCategory/create'
 
 import { useFishCategory } from "./logic"
 import TableComponent from '@/components/parts/Table'
@@ -12,6 +11,7 @@ import { TableColumnsType } from '@/components/parts/Table/type'
 
 const FishCategories = ({
 	fishCategories,
+	/* eslint-disable @typescript-eslint/no-explicit-any */
 }: any) => {
 	const router = useRouter()
 
@@ -36,11 +36,13 @@ const FishCategories = ({
 		{
 			label: '更新',
 			colorScheme: 'green',
+			/* eslint-disable @typescript-eslint/no-explicit-any */
 			onClick: (item: any) => handleUpdateRequest(item.id),
 		},
 		{
 			label: '削除',
 			colorScheme: 'red',
+			/* eslint-disable @typescript-eslint/no-explicit-any */
 			onClick: (item: any) => handleDeleteRequest(item.id),
 		},
 	]

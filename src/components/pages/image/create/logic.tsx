@@ -2,12 +2,13 @@
 
 import { useCallback } from 'react'
 import { toaster } from '@/components/ui/toaster'
-import apiClient from '@/app/lib/apiClient'
+import apiClient from '@/lib/apiClient'
 import { useRouter } from 'next/navigation'
 
 export const useUploadImage = () => {
   const router = useRouter()
 
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const handleUploadRequest = useCallback(async (requestData: any) => {
     console.log(requestData)
 
@@ -22,6 +23,7 @@ export const useUploadImage = () => {
       })
       console.log('API Response:', response)
       router.push('/images')
+      /* eslint-disable @typescript-eslint/no-explicit-any */
     } catch (error: any) {
       // エラー処理
       if (error instanceof Error) {

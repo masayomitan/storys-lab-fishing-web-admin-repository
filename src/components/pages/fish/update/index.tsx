@@ -7,18 +7,15 @@ import { z } from 'zod'
 import {
   Box,
   Button,
-  VStack,
   Text,
   Fieldset,
   Input,
-  Select,
   Stack,
 } from '@chakra-ui/react'
 import { createListCollection } from '@chakra-ui/react'
 import {
   SelectContent,
   SelectItem,
-  SelectLabel,
   SelectRoot,
   SelectTrigger,
   SelectValueText,
@@ -29,9 +26,11 @@ import { useUpdateFish } from './logic'
 
 type FishFormData = z.infer<typeof fishSchema>
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const FishUpdate = ({ fishCategories }: any) => {
   console.log(fishCategories)
   const mappedFishCategories = createListCollection({
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     items: fishCategories.map((category: any) => ({
       label: category.name,
       value: category.id.toString(),

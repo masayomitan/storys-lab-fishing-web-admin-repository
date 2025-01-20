@@ -1,18 +1,11 @@
 import { useCallback } from 'react'
 
-import { Toaster, toaster } from '@/components/ui/toaster'
+import { toaster } from '@/components/ui/toaster'
 
-/**
- * ローカル環境でuseEffectの中でtoastを表示すると、2回表示されることがある。
- * 理由はreactStrictMode: trueの影響でローカル環境のみuseEffectが1回余分に実行されるためである。
- * toastが2回表示されないようにtoastのidを指定し、isActiveで表示されているかを判定する。
-
- * see: https://react.dev/reference/react/StrictMode#fixing-bugs-found-by-re-running-effects-in-development
- * see: https://chakra-ui.com/docs/components/toast#preventing-duplicate-toast
- */
 export const SUCCESS_TOAST_ID = 'success-toast'
 export const ERROR_TOAST_ID = 'error-toast'
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const baseToast: any = {
   position: 'bottom-left',
   title: '保存しました',

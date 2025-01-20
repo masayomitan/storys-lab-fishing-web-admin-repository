@@ -1,7 +1,6 @@
-import { cookies } from 'next/headers'
+// import { cookies } from 'next/headers'
 
-import config from '@/app/lib/config'
-import { fromDate } from '@internationalized/date'
+import config from '@/lib/config'
 
 const DEFAULT_TIMEOUT = 120000
 const DEFAULT_RETRIES = 3
@@ -199,6 +198,7 @@ class ApiClient {
       try {
         rawBody = await response.clone().text()
       } catch (e) {
+        console.log(e)
         rawBody = 'Failed to read response body'
       }
 
@@ -269,11 +269,13 @@ class ApiClient {
 
   async uploadImage(
     path: string,
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     file: any,
     options?: RequestOptions
   ): Promise<SuccessResponse<string>> {
     const formData = new FormData()
 
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     file.images.forEach((imageFile: any) => {
       formData.append('files', imageFile)
     })
@@ -297,6 +299,7 @@ class ApiClient {
     try {
       jsonResponse = (await response.json()) as ApiResponse<string>
     } catch (error) {
+      console.log(error)
       throw new Error('Failed to parse JSON response from image upload API.')
     }
   

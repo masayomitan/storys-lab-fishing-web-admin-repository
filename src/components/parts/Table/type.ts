@@ -8,4 +8,5 @@ export type TableColumnsType = {
   size?: number
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type TableRowType = Record<string, any>

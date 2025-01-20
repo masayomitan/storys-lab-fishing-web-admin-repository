@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Link, VStack, Collapsible } from '@chakra-ui/react'
+import { Box, Text, Link, VStack, Collapsible } from '@chakra-ui/react'
 
 const SideBar = () => {
   return (
@@ -17,17 +17,40 @@ const SideBar = () => {
         <VStack align='stretch'>
           <Collapsible.Root>
             <Collapsible.Trigger paddingY="3">通常機能</Collapsible.Trigger>
+
             <Collapsible.Content>
               <Box padding="4">
-                <Link href='/fish-categories' _hover={{ color: 'teal.300' }}>
-                  魚カテゴリー
-                </Link>
+                <Collapsible.Trigger paddingY="3">魚カテゴリ</Collapsible.Trigger>
+                <Collapsible.Content>
+                <Box padding="4">
+                  <Link href='/fish-categories' _hover={{ color: 'teal.300' }}>
+                    魚カテゴリ一覧
+                  </Link>
+                </Box>
+                <Box padding="4">
+                  <Link href='/fish-categories/create' _hover={{ color: 'teal.300' }}>
+                    魚カテゴリ登録
+                  </Link>
+                </Box>
+                </Collapsible.Content>
               </Box>
+
               <Box padding="4">
-                <Link href='/fishes' _hover={{ color: 'teal.300' }}>
-                  魚
-                </Link>
+                <Collapsible.Trigger paddingY="3">魚</Collapsible.Trigger>
+                <Collapsible.Content>
+                  <Box padding="4">
+                    <Link href='/fishes' _hover={{ color: 'teal.300' }}>
+                      魚一覧
+                    </Link>
+                  </Box>
+                  <Box padding="4">
+                    <Link href='/fishes/create' _hover={{ color: 'teal.300' }}>
+                      魚登録
+                    </Link>
+                  </Box>
+                </Collapsible.Content>
               </Box>
+
               <Box padding="4">
                 {/* <Link href='/areas' _hover={{ color: 'teal.300' }}> */}
                   エリア(作成中)
@@ -35,7 +58,22 @@ const SideBar = () => {
               </Box>
               <Box padding="4">
                 {/* <Link href='/tools' _hover={{ color: 'teal.300' }}> */}
+                  釣り場(作成中)
+                {/* </Link> */}
+              </Box>
+              <Box padding="4">
+                {/* <Link href='/tools' _hover={{ color: 'teal.300' }}> */}
                   道具(作成中)
+                {/* </Link> */}
+              </Box>
+              <Box padding="4">
+                {/* <Link href='/tools' _hover={{ color: 'teal.300' }}> */}
+                  イベント(作成中)
+                {/* </Link> */}
+              </Box>
+              <Box padding="4">
+                {/* <Link href='/tools' _hover={{ color: 'teal.300' }}> */}
+                  記事(作成中)
                 {/* </Link> */}
               </Box>
             </Collapsible.Content>

@@ -3,7 +3,30 @@
 import React from 'react'
 import { Table, Button } from '@chakra-ui/react'
 
-const TableComponent = ({ columns, data, actions }: any) => {
+interface Column {
+  header: string;
+  accessor: string;
+}
+
+interface Action<T> {
+  label: string;
+  colorScheme?: string;
+  onClick: (item: T) => void;
+}
+
+interface TableComponentProps<T> {
+  columns: Column[];
+  data: T[];
+  actions?: Action<T>[];
+}
+
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const TableComponent = <T extends { id: string }>({
+  columns,
+  data,
+  actions,
+}: TableComponentProps<T>) => {
   return (
     <Table.Root size="sm" striped showColumnBorder> 
       <Table.Header>

@@ -2,12 +2,13 @@
 
 import { useCallback } from 'react'
 import { toaster } from '@/components/ui/toaster'
-import apiClient from '@/app/lib/apiClient'
+import apiClient from '@/lib/apiClient'
 import { useRouter } from 'next/navigation'
 
 export const useCreateFishCategory = () => {
   const router = useRouter()
 
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const handleCreateRequest = useCallback(async (requestData: any) => {
     try {
       // API リクエスト
@@ -20,6 +21,7 @@ export const useCreateFishCategory = () => {
       })
       console.log('API Response:', response)
       router.push('/fish-categories')
+      /* eslint-disable @typescript-eslint/no-explicit-any */
     } catch (error: any) {
       // エラー処理
       if (error instanceof Error) {

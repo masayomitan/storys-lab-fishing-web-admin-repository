@@ -1,10 +1,7 @@
-import { Box, Flex, Text, Link, VStack, HStack } from '@chakra-ui/react'
+import { Box, Flex, Text, HStack } from '@chakra-ui/react'
 import SideBar from '@/components/parts/Sidebar'
 
-interface LayoutProps {
-  children: React.ReactNode
-}
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const Dashboard = ({ children }: any) => {
   return (
     <Flex h='100vh'>

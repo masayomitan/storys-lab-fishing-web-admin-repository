@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -21,7 +20,7 @@ import { useCreateFishCategory } from './logic'
 type FishFormData = z.infer<typeof fishCategorySchema>
 
 const FishCategoryCreate = () => {
-  const router = useRouter()
+  // const router = useRouter()
   const {
     register,
     handleSubmit,

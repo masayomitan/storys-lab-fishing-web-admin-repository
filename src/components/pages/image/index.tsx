@@ -1,21 +1,15 @@
 'use client'
 
-import { useState } from 'react'
-import { useDropzone } from 'react-dropzone'
+// import { useState } from 'react'
 import {
   Box,
-  Text,
-  VStack,
-  Button,
-  HStack,
-  Image,
-  Flex,
 } from '@chakra-ui/react'
 
 import ImageGrid from '@/components/parts/ImageGrid'
 
 const Images = ({
   images,
+  /* eslint-disable @typescript-eslint/no-explicit-any */
 }: any) => {
 
   return (

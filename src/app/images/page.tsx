@@ -1,13 +1,12 @@
 import {
   Box,
-
 } from '@chakra-ui/react'
 import Images from '@/components/pages/image/index'
-import apiClient from '@/app/lib/apiClient'
+import apiClient from '@/lib/apiClient'
 import Layout from '@/components/parts/Layout'
 
 const ImagePage = async () => {
-
+	/* eslint-disable @typescript-eslint/no-explicit-any */
   const images = await apiClient.get<any[]>('/admin/images', {
 		headers: {
 			'Content-Type': 'application/json',
