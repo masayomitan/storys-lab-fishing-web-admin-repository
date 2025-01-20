@@ -1,6 +1,6 @@
 import { Box, Text, Link, VStack, Collapsible } from '@chakra-ui/react'
 
-const SideBar = () => {
+const Sidebar = () => {
   return (
 		<Box>
       <Box
@@ -102,4 +102,4 @@ const SideBar = () => {
   )
 }
 
-export default SideBar
+export default Sidebar
