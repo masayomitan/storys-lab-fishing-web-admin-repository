@@ -22,6 +22,7 @@ const Dashboard = ({ children }: any) => {
         {/* コンテンツ */}
         <Box p={6} bg='gray.50' flex='1' overflowY='auto'>
           {children}
+          釣りアプリ管理画面
         </Box>
       </Flex>
     </Flex>

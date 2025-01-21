@@ -12,7 +12,9 @@ const Side = () => {
         flexDirection='column'
       >
         <Text fontSize='2xl' fontWeight='bold' mb={6}>
-          管理画面
+          <Link href='/dashboard' _hover={{ color: 'teal.300' }}>
+            管理画面
+          </Link>
         </Text>
         <VStack align='stretch'>
 
