@@ -1,7 +1,8 @@
 import { Box, Flex, Text, HStack } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 import Head from 'next/head'
-import Sidebar from '@/components/parts/Sidebar'
+// import Side from '@/components/parts/Side'
+import Side from '@/components/parts/Side'
 
 interface LayoutProps {
   children: ReactNode
@@ -13,7 +14,7 @@ const Dashboard = ({ children }: LayoutProps) => {
       <Head>
         <title>{'title'}</title>
       </Head>
-      <Sidebar />
+      <Side />
 
       {/* メインコンテンツ */}
       <Flex flex='1' direction='column'>
