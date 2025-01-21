@@ -15,7 +15,6 @@ const Dashboard = ({ children }: LayoutProps) => {
       </Head>
       <Sidebar />
 
-
       {/* メインコンテンツ */}
       <Flex flex='1' direction='column'>
         {/* ヘッダー */}
