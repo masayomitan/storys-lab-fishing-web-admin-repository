@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import FishUpdate from '@/components/pages/fish/update'
 import apiClient from '@/lib/apiClient'
-import Layout from '@/components/parts/Layout'
+import Layout from '@/components/Layout'
 
 interface FishUpdatePageProps {
   params: Promise<{

@@ -2,7 +2,7 @@
 
 import { Box } from '@chakra-ui/react'
 import ImageAdd from '@/components/pages/image/create/index'
-import Layout from '@/components/parts/Layout/index'
+import Layout from '@/components/Layout/index'
 
 const ImageAddPage = () => {
 	return (
