@@ -1,11 +1,11 @@
 import { Box, Flex, Text, HStack } from '@chakra-ui/react'
-// import SideBar from '@/components/parts/Sidebar/index'
+import Side from '@/components/parts/Side'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const Dashboard = ({ children }: any) => {
   return (
     <Flex h='100vh'>
-      {/* <SideBar /> */}
+      <Side />
 
       {/* メインコンテンツ */}
       <Flex flex='1' direction='column'>

@@ -12,11 +12,6 @@ const FishCategoryPage = async () => {
     cache: 'no-cache',
   })
 
-    // データが空の場合は何も表示しない
-    if (!fishCategories || fishCategories.length === 0) {
-      return <Box p={4}>No data found</Box>
-    }
-
   return (
     <Layout>
       <Box p={4} bg='white' borderRadius='md' boxShadow='sm'>
