@@ -36,7 +36,7 @@ export const useUploadImage = () => {
         console.error('Unexpected error:', error)
       }
     }
-  }, [])
+  }, [router])
 
   return {
     handleUploadRequest,

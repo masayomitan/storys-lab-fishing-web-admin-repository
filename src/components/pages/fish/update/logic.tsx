@@ -35,7 +35,7 @@ export const useUpdateFish = () => {
         console.error('Unexpected error:', error)
       }
     }
-  }, [])
+  }, [router])
 
   return {
     handleCreateRequest,
