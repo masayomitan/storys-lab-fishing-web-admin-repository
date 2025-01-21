@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import Fishes from '@/components/pages/fish/index'
 import apiClient from '@/lib/apiClient'
-import Layout from '@/components/Layout'
+import Layout from '@/components/parts/Layout'
 
 const FishPage = async () => {
 

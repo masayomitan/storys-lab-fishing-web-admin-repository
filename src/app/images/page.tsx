@@ -3,7 +3,7 @@ import {
 } from '@chakra-ui/react'
 import Images from '@/components/pages/image/index'
 import apiClient from '@/lib/apiClient'
-import Layout from '@/components/Layout'
+import Layout from '@/components/parts/Layout'
 
 const ImagePage = async () => {
 	/* eslint-disable @typescript-eslint/no-explicit-any */
