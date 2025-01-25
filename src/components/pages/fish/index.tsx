@@ -27,6 +27,7 @@ const Fishes = ({
 	const columns: TableColumnsType[] = [
 		{ header: 'ID', accessor: 'id' },
 		{ header: '名称', accessor: 'name' },
+		{ header: 'scientific_name', accessor: '学名' },
 		{ header: '作成日時', accessor: 'created_at' },
 		{ header: '更新日時', accessor: 'updated_at' },
 		{ header: '', accessor: '' },

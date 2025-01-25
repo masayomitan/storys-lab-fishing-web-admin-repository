@@ -1,6 +1,7 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
+import Image from 'next/image'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -20,26 +21,26 @@ import {
   SelectTrigger,
   SelectValueText,
 } from '@/components/ui/select'
+
 import { Field } from '@/components/ui/field'
-import { fishSchema } from './constant'
+import { fishSchema, ImageType } from './constant'
 import { useCreateFish } from './logic'
+import SetImages from '@/components/parts/Modal/setImages'
 
 type FishFormData = z.infer<typeof fishSchema>
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const FishCreate = ({ fishCategories }: any) => {
-  console.log(fishCategories)
-  const mappedFishCategories = createListCollection({
-    /* eslint-disable @typescript-eslint/no-explicit-any */
-    items: fishCategories.map((category: any) => ({
-      label: category.name,
-      value: category.id.toString(),
-    })),
-  })
+const FishCreate = ({ fishCategories, fishImages }: any) => {
+  const [selectedImages, setSelectedImages] = useState<[]>([])
+
+  console.log(fishImages)
+  console.log(selectedImages)
 
   const {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors },
   } = useForm<FishFormData>({
     resolver: zodResolver(fishSchema),
@@ -55,8 +56,27 @@ const FishCreate = ({ fishCategories }: any) => {
       depth_range_max: 0,
       water_temperature_range_min: 0,
       water_temperature_range_max: 0,
+      images: []
     },
   })
+
+  const mappedFishCategories = createListCollection({
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    items: fishCategories.map((category: any) => ({
+      label: category.name,
+      value: category.id.toString(),
+    })),
+  })
+
+  const handleImageSelect = (imageIds: number[]) => {
+    console.log('handleImageSelect')
+    console.log(imageIds)
+
+    const selectedImages = fishImages.filter((image: any) => imageIds.includes(image.id))
+    console.log(selectedImages)
+    setSelectedImages(selectedImages)
+    setValue('images', selectedImages)
+  }
 
   const { handleCreateRequest } = useCreateFish()
 
@@ -245,11 +265,36 @@ const FishCreate = ({ fishCategories }: any) => {
 
           </Fieldset.Content>
         </Fieldset.Root>
+        <SetImages 
+          images={fishImages}
+          onSelect={handleImageSelect}
+        />
+        {/* Selected Images */}
+        <Field label="選択された画像">
+          <Stack direction="row" flexWrap="wrap" gap={2}>
+            {selectedImages.map((selectedImage: ImageType) => (
+              <Box
+                key={selectedImage.id}
+                borderRadius="full"
+                colorScheme="blue"
+              >
+                <Image
+                  src={selectedImage.image_url}
+                  alt={selectedImage.name}
+                  width={100}
+                  height={100}
+                  style={{ objectFit: 'cover' }}
+                />
+              </Box>
+            ))}
+          </Stack>
+        </Field>
 
         <Button type='submit' colorScheme='blue' w='full' mt={4}>
           登録
         </Button>
       </form>
+    
     </Box>
   )
 }

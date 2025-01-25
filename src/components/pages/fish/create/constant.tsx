@@ -1,5 +1,11 @@
 import { z } from 'zod'
 
+export type ImageType = {
+	id: number
+	image_url: string
+	name: string
+}
+
 export const fishSchema = z.object({
   name: z.string().min(1, '名称は必須です'),
   scientific_name: z.string().optional(),
@@ -31,5 +37,8 @@ export const fishSchema = z.object({
     .optional(),
   fish_category_id: z
     .number({ invalid_type_error: '魚カテゴリーを選択してください' })
-    .min(1, '魚カテゴリーは必須です')
+    .min(1, '魚カテゴリーは必須です'),
+  images: z
+    .array(z.any())
+    .optional(),
 })

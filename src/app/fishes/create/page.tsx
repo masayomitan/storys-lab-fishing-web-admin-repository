@@ -12,11 +12,20 @@ const FishCreatePage = async () => {
     cache: 'no-cache',
   })
 
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  const fishImages = await apiClient.get<any[]>(`/admin/images?type=1`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    cache: 'no-cache',
+  })
+
   return (
     <Layout>
       <Box p={4} bg='white' borderRadius='md' boxShadow='sm'>
         <FishCreate 
           fishCategories={fishCategories}
+          fishImages={fishImages}
         />
       </Box>
     </Layout>

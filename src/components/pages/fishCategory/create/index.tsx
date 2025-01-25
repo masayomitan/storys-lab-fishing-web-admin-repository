@@ -10,7 +10,6 @@ import {
   Text,
   Fieldset,
   Input,
-  Stack,
 } from '@chakra-ui/react'
 import { Toaster } from '@/components/ui/toaster'
 import { Field } from '@/components/ui/field'
@@ -30,6 +29,8 @@ const FishCategoryCreate = () => {
     defaultValues: {
       name: '',
       description: '',
+      english_name: '',
+      family_name: '',
     },
   })
 
@@ -45,15 +46,11 @@ const FishCategoryCreate = () => {
 
       <form onSubmit={handleSubmit(handleCreateRequest)}>
         <Fieldset.Root>
-          <Stack>
-            <Fieldset.Legend>魚の情報</Fieldset.Legend>
-          </Stack>
           <Fieldset.Content>
             {/* 名称 */}
             <Field label='名称' invalid={!!errors.name}>
               <Input
                 type='text'
-                placeholder='魚カテゴリーの名称を入力してください'
                 {...register('name')}
               />
               {errors.name && (
@@ -61,6 +58,22 @@ const FishCategoryCreate = () => {
                   {errors.name.message}
                 </Text>
               )}
+            </Field>
+
+            {/* 英語名称 */}
+            <Field label='英語名称'>
+              <Input
+                type='text'
+                {...register('english_name')}
+              />
+            </Field>
+
+            {/* 説明 */}
+            <Field label='科名'>
+              <Input
+                type='text'
+                {...register('family_name')}
+              />
             </Field>
 
             {/* 説明 */}

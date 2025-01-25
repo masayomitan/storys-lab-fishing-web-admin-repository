@@ -64,7 +64,7 @@ const FishUpdate = ({ fishCategories }: any) => {
   return (
     <Box p={6} bg='white' borderRadius='md' boxShadow='sm'>
       <Text fontSize='xl' fontWeight='bold' mb={4}>
-        魚登録フォーム
+        魚更新フォーム
       </Text>
 
       <form onSubmit={handleSubmit(handleCreateRequest)}>
