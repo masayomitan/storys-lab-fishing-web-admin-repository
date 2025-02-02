@@ -17,14 +17,13 @@ const baseToast: any = {
 }
 
 export const useToastMessage = () => {
-
   const successToast = useCallback(
     (message = '成功しました') => {
       toaster.create({
         ...baseToast,
         id: SUCCESS_TOAST_ID,
         title: message,
-        status: 'success',
+        type: 'success',
       })
     },
     []
@@ -36,7 +35,7 @@ export const useToastMessage = () => {
         ...baseToast,
         id: ERROR_TOAST_ID,
         title: message,
-        status: 'error',
+        type: 'error',
       })
     },
     []

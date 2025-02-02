@@ -7,6 +7,8 @@ import {
 import { useToastMessage } from '@/app/hooks/useToastMessage'
 import { FishTableRowType } from './constant'
 import { useRouter } from 'next/navigation'
+import { toaster } from '@/components/ui/toaster'
+import apiClient from '@/lib/apiClient'
 
 const getFishCategoryRows = (initialFishes: FishTableRowType[]) => {
   const results: FishTableRowType[] = initialFishes.map((item) => {
@@ -52,11 +54,17 @@ export const useFish = (
 
 	const handleDeleteRequest = async (id: string) => {
     try {
-      // await deleteRequest(id)
+      // API リクエスト
+      console.log(`/admin/fishes/delete/${id}`)
+      await apiClient.delete(`/admin/fishes/delete/${id}`)
+
       const deletedTableRows = tableRows.filter((row) => row.id !== id)
       const formattedTableRows = getRowsAfterDeleted(deletedTableRows)
       setTableRows(formattedTableRows);
-      successToast(`魚カテゴリーを削除しました`)
+      toaster.create({
+        title: '削除しました',
+        type: 'success',
+      })
     } catch (error) {
       console.error(error)
       errorToast('削除に失敗しました')
