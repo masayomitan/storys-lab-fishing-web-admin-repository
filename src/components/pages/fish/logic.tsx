@@ -7,7 +7,6 @@ import {
 import { useToastMessage } from '@/app/hooks/useToastMessage'
 import { FishTableRowType } from './constant'
 import { useRouter } from 'next/navigation'
-import { toaster } from '@/components/ui/toaster'
 import apiClient from '@/lib/apiClient'
 
 const getFishCategoryRows = (initialFishes: FishTableRowType[]) => {
@@ -61,10 +60,7 @@ export const useFish = (
       const deletedTableRows = tableRows.filter((row) => row.id !== id)
       const formattedTableRows = getRowsAfterDeleted(deletedTableRows)
       setTableRows(formattedTableRows);
-      toaster.create({
-        title: '削除しました',
-        type: 'success',
-      })
+      successToast('削除しました')
     } catch (error) {
       console.error(error)
       errorToast('削除に失敗しました')
