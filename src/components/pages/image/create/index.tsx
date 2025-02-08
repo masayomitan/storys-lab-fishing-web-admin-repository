@@ -47,11 +47,12 @@ const ImageAdd = () => {
     },
   })
   const mappedImages = createListCollection({
-     /* eslint-disable @typescript-eslint/no-explicit-any */
-    items: IMAGE_TYPES.map((image_type: any) => ({
-      label: image_type.label,
-      value: image_type.value,
-    })),
+    items: [
+      { label: '魚', value: 1 },
+      { label: 'エリア', value: 2 },
+      { label: '釣り場', value: 3 },
+      { label: '道具', value: 4 },
+    ]
   })
 
   const onDrop = (acceptedFiles: File[]) => {
@@ -163,7 +164,7 @@ const ImageAdd = () => {
                   {IMAGE_TYPES.map((type) => (
                     <SelectItem 
                       key={type.value}
-                      item={String(type.value)}
+                      item={type}
                     >
                       {type.label}
                     </SelectItem>
