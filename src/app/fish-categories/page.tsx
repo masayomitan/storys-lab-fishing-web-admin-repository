@@ -11,6 +11,8 @@ const FishCategoryPage = async () => {
     },
     cache: 'no-cache',
   })
+  console.log('FishCategoryPage')
+  console.log(fishCategories)
 
   return (
     <Layout>

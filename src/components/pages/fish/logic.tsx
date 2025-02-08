@@ -10,13 +10,15 @@ import { useRouter } from 'next/navigation'
 import apiClient from '@/lib/apiClient'
 
 const getFishCategoryRows = (initialFishes: FishTableRowType[]) => {
+
   const results: FishTableRowType[] = initialFishes.map((item) => {
     return {
       id: item.id,
       name: item.name,
+      scientific_name: item.name,
       description: item.description,
-      created_at: item.created_at,
-      updated_at: item.updated_at,
+      CreatedAt: item.CreatedAt,
+      UpdatedAt: item.UpdatedAt,
     }
   })
   return results
@@ -27,9 +29,10 @@ const getRowsAfterDeleted = (data: FishTableRowType[]) => {
     return {
       id: item.id,
       name: item.name,
+      scientific_name: item.name,
       description: item.description,
-      created_at: item.created_at,
-      updated_at: item.updated_at,
+      CreatedAt: item.CreatedAt,
+      UpdatedAt: item.UpdatedAt,
     }
   })
   return results
