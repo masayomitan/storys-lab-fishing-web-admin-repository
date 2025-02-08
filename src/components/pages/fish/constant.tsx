@@ -5,6 +5,6 @@ export type FishTableRowType = {
 	name: string
 	scientific_name: string
 	description: string
-	CreatedAt: string
-	UpdatedAt: string
+	created_at: string
+	updated_at: string
 }

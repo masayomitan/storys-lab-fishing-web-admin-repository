@@ -32,7 +32,6 @@ const IMAGE_TYPES = [
 const ImageAdd = () => {
   const [images, setImages] = useState<File[]>([])
 
-
   const { 
     control,
     handleSubmit,

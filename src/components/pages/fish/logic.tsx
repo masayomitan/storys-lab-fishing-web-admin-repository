@@ -4,10 +4,11 @@ import {
   useEffect,
   useState,
 } from 'react'
-import { useToastMessage } from '@/app/hooks/useToastMessage'
+import { useToastMessage } from '@/components/hooks/useToastMessage'
 import { FishTableRowType } from './constant'
 import { useRouter } from 'next/navigation'
 import apiClient from '@/lib/apiClient'
+import { formatDate } from '@/utils/dateFormatter'
 
 const getFishCategoryRows = (initialFishes: FishTableRowType[]) => {
 
@@ -15,10 +16,10 @@ const getFishCategoryRows = (initialFishes: FishTableRowType[]) => {
     return {
       id: item.id,
       name: item.name,
-      scientific_name: item.name,
+      scientific_name: item.scientific_name,
       description: item.description,
-      CreatedAt: item.CreatedAt,
-      UpdatedAt: item.UpdatedAt,
+      created_at: formatDate(item.created_at),
+      updated_at: formatDate(item.updated_at),
     }
   })
   return results
@@ -29,10 +30,10 @@ const getRowsAfterDeleted = (data: FishTableRowType[]) => {
     return {
       id: item.id,
       name: item.name,
-      scientific_name: item.name,
+      scientific_name: item.scientific_name,
       description: item.description,
-      CreatedAt: item.CreatedAt,
-      UpdatedAt: item.UpdatedAt,
+      created_at: formatDate(item.created_at),
+      updated_at: formatDate(item.updated_at),
     }
   })
   return results

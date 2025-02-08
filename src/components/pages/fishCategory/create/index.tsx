@@ -8,6 +8,7 @@ import {
   Box,
   Button,
   Text,
+  Textarea,
   Fieldset,
   Input,
 } from '@chakra-ui/react'
@@ -78,8 +79,7 @@ const FishCategoryCreate = () => {
 
             {/* 説明 */}
             <Field label='説明'>
-              <Input
-                type='text'
+              <Textarea
                 placeholder='魚カテゴリーの説明を入力してください'
                 {...register('description')}
               />

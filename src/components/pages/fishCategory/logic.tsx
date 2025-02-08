@@ -4,15 +4,20 @@ import {
   useEffect,
   useState,
 } from 'react'
-import { useToastMessage } from '@/app/hooks/useToastMessage'
+import { useToastMessage } from '@/components/hooks/useToastMessage'
 import { FishCategoryTableRowType } from './constant'
+import apiClient from '@/lib/apiClient'
+import { formatDate } from '@/utils/dateFormatter'
 
 const getFishCategoryRows = (initialFishCategories: FishCategoryTableRowType[]) => {
   const results: FishCategoryTableRowType[] = initialFishCategories.map((item) => {
     return {
       id: item.id,
       name: item.name,
+      family_name: item.family_name,
       description: item.description,
+      created_at: formatDate(item.created_at),
+      updated_at: formatDate(item.updated_at),
     }
   })
   return results
@@ -23,7 +28,10 @@ const getRowsAfterDeleted = (data: FishCategoryTableRowType[]) => {
     return {
       id: item.id,
       name: item.name,
+      family_name: item.family_name,
       description: item.description,
+      created_at: formatDate(item.created_at),
+      updated_at: formatDate(item.updated_at),
     }
   })
   return results
@@ -45,7 +53,7 @@ export const useFishCategory = (
 
 	const handleDeleteRequest = async (id: string) => {
     try {
-      // await deleteRequest(id)
+      await apiClient.delete(`/admin/fish-categories/delete/${id}`)
       const deletedTableRows = tableRows.filter((row) => row.id !== id)
       const formattedTableRows = getRowsAfterDeleted(deletedTableRows)
       setTableRows(formattedTableRows);

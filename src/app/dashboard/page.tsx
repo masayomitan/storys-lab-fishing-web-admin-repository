@@ -1,5 +1,5 @@
 import { Box, Flex, Text, HStack } from '@chakra-ui/react'
-import Side from '@/components/parts/Side'
+import Side from '@/components/parts/Sidebar'
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const Dashboard = ({ children }: any) => {

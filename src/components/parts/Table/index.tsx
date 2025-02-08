@@ -11,6 +11,7 @@ interface Column {
 interface Action<T> {
   label: string;
   colorScheme?: string;
+  bgColor?: string
   onClick: (item: T) => void;
 }
 
@@ -51,10 +52,12 @@ const TableComponent = <T extends { id: string }>({
                 {actions.map((btn: any, btnIndex: number) => (
                   <Button
                     key={btnIndex}
-                    size="sm"
+                    size="md"
                     colorScheme={btn.colorScheme || 'blue'}
+                    bg={btn.bgColor}
                     onClick={() => btn.onClick(item)}
-                    mr={2}
+                    mr={3}
+                    width={16}
                   >
                     {btn.label}
                   </Button>
