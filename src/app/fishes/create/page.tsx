@@ -2,6 +2,7 @@ import { Box } from '@chakra-ui/react'
 import FishCreate from '@/components/pages/fish/create'
 import apiClient from '@/lib/apiClient'
 import Layout from '@/components/parts/Layout'
+export const revalidate = 0
 
 const FishCreatePage = async () => {
   /* eslint-disable @typescript-eslint/no-explicit-any */

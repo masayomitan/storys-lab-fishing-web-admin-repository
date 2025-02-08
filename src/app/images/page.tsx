@@ -4,6 +4,7 @@ import {
 import Images from '@/components/pages/image/index'
 import apiClient from '@/lib/apiClient'
 import Layout from '@/components/parts/Layout'
+export const revalidate = 0
 
 const ImagePage = async () => {
 	/* eslint-disable @typescript-eslint/no-explicit-any */
