@@ -11,6 +11,7 @@ import {
   HStack,
   Image,
   Flex,
+  Input,
 } from '@chakra-ui/react'
 import {
   SelectContent,
@@ -30,21 +31,19 @@ const IMAGE_TYPES = [
 ]
 
 const ImageAdd = () => {
-  const [images, setImages] = useState<File[]>([])
+  const [images, setImages] = useState([])
 
   const { 
     control,
     handleSubmit,
-    // watch,
     // setValue 
   } = useForm({
     defaultValues: {
-      imageMetadata: images.map(() => ({
-        name: '',
-      })),
+      imageMetadata: [],
       image_type: null,
     },
   })
+
   const mappedImages = createListCollection({
     items: [
       { label: '魚', value: 1 },
@@ -54,12 +53,19 @@ const ImageAdd = () => {
     ]
   })
 
-  const onDrop = (acceptedFiles: File[]) => {
-    setImages((prev) => [...prev, ...acceptedFiles])
+  const onDrop = (acceptedFiles) => {
+    const newImages = acceptedFiles.map((file) => ({ file, name: '' }))
+    setImages((prev) => [...prev, ...newImages])
   }
 
-  const removeImage = (index: number) => {
+  const removeImage = (index) => {
     setImages((prev) => prev.filter((_, i) => i !== index))
+  }
+
+  const handleNameChange = (index, value) => {
+    setImages((prev) =>
+      prev.map((img, i) => (i === index ? { ...img, name: value } : img))
+    )
   }
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -71,10 +77,10 @@ const ImageAdd = () => {
   })
 
   const { handleUploadRequest } = useUploadImage()
-   /* eslint-disable @typescript-eslint/no-explicit-any */
-  const onSubmit = (data: any) => {
+
+  const onSubmit = (data) => {
     const payload = {
-      images,
+      images: images.map(({ file, name }) => ({ file, name })),
       image_type: data.image_type,
     }
     handleUploadRequest(payload)
@@ -113,25 +119,22 @@ const ImageAdd = () => {
               アップロード済みの画像
             </Text>
 
-            {images.map((file, index) => (
-              <Flex
-                key={index}
-                align='center'
-                justify='space-between'
-                borderWidth='1px'
-                borderRadius='md'
-                p={2}
-                bg='gray.100'
-              >
+            {images.map((img, index) => (
+              <Flex key={index} align='center' justify='space-between' borderWidth='1px' borderRadius='md' p={2} bg='gray.100'>
                 <HStack>
                   <Image
-                    src={URL.createObjectURL(file)}
-                    alt={file.name}
+                    src={URL.createObjectURL(img.file)}
+                    alt={img.file.name}
                     boxSize='50px'
                     objectFit='cover'
                     borderRadius='md'
                   />
-                  <Text fontSize='sm'>{file.name}</Text>
+                  <Input
+                    width='500px'
+                    placeholder='画像の名前を入力'
+                    value={img.name}
+                    onChange={(e) => handleNameChange(index, e.target.value)}
+                  />
                 </HStack>
                 <Button
                   size='sm'
@@ -144,6 +147,7 @@ const ImageAdd = () => {
             ))}
           </VStack>
         )}
+
         <Box mt={4}>
           <Text fontSize='md' fontWeight='bold' mb={2}>
             画像タイプを選択
@@ -180,7 +184,6 @@ const ImageAdd = () => {
           colorScheme='teal'
           w='full'
           mt={6}
-          // disabled={images.length === 0}
         >
           アップロード
         </Button>

@@ -277,11 +277,11 @@ class ApiClient {
 
     /* eslint-disable @typescript-eslint/no-explicit-any */
     file.images.forEach((imageFile: any) => {
-      formData.append('files', imageFile)
+      formData.append('files', imageFile.file)
+      formData.append('names', imageFile.name)
     })
 
     formData.append('image_type', file.image_type.toString())
-    console.log(formData)
 
     const fetchOptions: RequestOptions = {
       ...options,
