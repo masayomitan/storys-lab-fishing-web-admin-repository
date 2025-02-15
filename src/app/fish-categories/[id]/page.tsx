@@ -1,15 +1,16 @@
 import { Box } from '@chakra-ui/react'
-import FishCategories from '@/components/pages/fishCategory/index'
+import FishCategories from '@/components/pages/fishCategory/update/index'
+
+export const revalidate = 60
 
 export const generateStaticParams = async (): Promise<{ id: string }[]> => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/mc/fish-categories`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/admin/fish-categories`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-    cache: 'no-store',
+    cache: 'force-cache',
   })
-
   if (!res.ok) {
     return []
   }
@@ -22,31 +23,28 @@ export const generateStaticParams = async (): Promise<{ id: string }[]> => {
 }
 
 type FishCategoryPageProps = {
-  params: Promise<{
+  params: {
     id: string 
-  }>
+  }
 }
 
 const FishCategoryPage = async ({ params }: FishCategoryPageProps) => {
   const { id } = await params
-
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/mc/fish-categories/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/admin/fish-categories/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-    cache: 'no-store',
   })
 
   if (!res.ok) {
     return <div>エラーが発生しました。</div>
   }
 
-  const fishCategories = await res.json()
-
+  const fishCategory = await res.json()
   return (
     <Box p={4} bg='white' borderRadius='md' boxShadow='sm'>
-      <FishCategories fishCategories={fishCategories} />
+      <FishCategories fishCategory={fishCategory} />
     </Box>
   )
 }

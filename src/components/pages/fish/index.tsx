@@ -29,8 +29,6 @@ const Fishes = ({
 	} = useFish(
 		fishes
 	)
-	console.log('fishes')
-	console.log(tableRows)
 	const columns: TableColumnsType[] = [
 		{ header: 'ID', accessor: 'id' },
 		{ header: '名称', accessor: 'name' },

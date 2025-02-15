@@ -6,7 +6,6 @@ import Layout from '@/components/parts/Layout'
 export const revalidate = 0
 
 const FishCategoryPage = async () => {
-  console.log('FishCategoryPage Start')
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
   const fishCategories = await apiClient.get<any[]>(`/admin/fish-categories`, {
@@ -15,8 +14,6 @@ const FishCategoryPage = async () => {
     },
     cache: 'no-cache',
   })
-  console.log('FishCategoryPage')
-  console.log(fishCategories)
 
   return (
     <Layout>

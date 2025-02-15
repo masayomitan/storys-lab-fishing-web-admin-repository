@@ -58,7 +58,6 @@ class ApiClient {
 
   // 共通のフェッチ関数
   private async fetchWithErrorHandling(url: string, options: RequestOptions = {}): Promise<Response> {
-    console.log(this.baseUrl)
     const {
       timeout = DEFAULT_TIMEOUT,
       retries = DEFAULT_RETRIES,

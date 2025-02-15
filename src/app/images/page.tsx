@@ -14,7 +14,6 @@ const ImagePage = async () => {
 		},
 		cache: 'no-cache',
 	})
-  console.log(images)
 
 	return (
 		<Layout>

@@ -3,7 +3,7 @@
 import {
   useState,
 } from 'react'
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react"
 import { useRouter } from 'next/navigation'
 import { Toaster } from '@/components/ui/toaster'
 // import FishCategoryCreate from '@/components/pages/fishCategory/create'
@@ -21,16 +21,12 @@ const FishCategories = ({
 }: any) => {
 	const router = useRouter()
   const [deleteDialog, setDeleteDialog] = useState<string | null>(null)
-	console.log(fishCategories)
 	const {
 		tableRows,
-		handleUpdateRequest,
 		handleDeleteRequest
 	} = useFishCategory(
 		fishCategories
 	)
-	console.log('fishCategories')
-	console.log(tableRows)
 	const columns: TableColumnsType[] = [
 		{ header: 'ID', accessor: 'id' },
 		{ header: '名称', accessor: 'name' },
@@ -44,7 +40,7 @@ const FishCategories = ({
 			label: '更新',
 			colorScheme: 'green',
 			/* eslint-disable @typescript-eslint/no-explicit-any */
-			onClick: (item: any) => handleUpdateRequest(item.id),
+			onClick: (item: any) => handleUpdate(item.id),
 		},
 		{
 			label: '削除',
@@ -56,7 +52,10 @@ const FishCategories = ({
 	]
 
 	const handleCreate = () => {
-    router.push('/fish-categories/create');
+    router.push('/fish-categories/create')
+  }
+	const handleUpdate = (id: number) => {
+    router.push('/fish-categories/' + id)
   }
 
   const handleConfirmDelete = () => {

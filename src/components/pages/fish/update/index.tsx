@@ -28,7 +28,6 @@ type FishFormData = z.infer<typeof fishSchema>
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const FishUpdate = ({ fishCategories }: any) => {
-  console.log(fishCategories)
   const mappedFishCategories = createListCollection({
     /* eslint-disable @typescript-eslint/no-explicit-any */
     items: fishCategories.map((category: any) => ({

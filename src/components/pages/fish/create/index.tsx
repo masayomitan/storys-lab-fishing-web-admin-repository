@@ -33,9 +33,6 @@ type FishFormData = z.infer<typeof fishSchema>
 const FishCreate = ({ fishCategories, fishImages }: any) => {
   const [selectedImages, setSelectedImages] = useState<[]>([])
 
-  console.log(fishImages)
-  console.log(selectedImages)
-
   const {
     register,
     handleSubmit,
@@ -69,11 +66,8 @@ const FishCreate = ({ fishCategories, fishImages }: any) => {
   })
 
   const handleImageSelect = (imageIds: number[]) => {
-    console.log('handleImageSelect')
-    console.log(imageIds)
 
     const selectedImages = fishImages.filter((image: any) => imageIds.includes(image.id))
-    console.log(selectedImages)
     setSelectedImages(selectedImages)
     setValue('images', selectedImages)
   }

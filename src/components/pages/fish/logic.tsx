@@ -57,8 +57,6 @@ export const useFish = (
 
 	const handleDeleteRequest = async (id: string) => {
     try {
-      // API リクエスト
-      console.log(`/admin/fishes/delete/${id}`)
       await apiClient.delete(`/admin/fishes/delete/${id}`)
 
       const deletedTableRows = tableRows.filter((row) => row.id !== id)

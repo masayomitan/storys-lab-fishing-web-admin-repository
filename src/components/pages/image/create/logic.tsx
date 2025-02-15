@@ -10,8 +10,6 @@ export const useUploadImage = () => {
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
   const handleUploadRequest = useCallback(async (requestData: any) => {
-    console.log(requestData)
-
     try {
       // API リクエスト
       const response = await apiClient.uploadImage('/admin/images/upload', requestData)

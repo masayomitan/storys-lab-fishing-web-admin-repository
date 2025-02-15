@@ -5,28 +5,25 @@ import { toaster } from '@/components/ui/toaster'
 import apiClient from '@/lib/apiClient'
 import { useRouter } from 'next/navigation'
 
-export const useCreateFish = () => {
+export const useUpdateFishCategory = () => {
   const router = useRouter()
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
-  const handleCreateRequest = useCallback(async (requestData: any) => {
+  const handleUpdateRequest = useCallback(async (id: string, requestData: any) => {
     try {
-      // API リクエスト
-      const response = await apiClient.post('/admin/fishes/create', requestData)
+      const response = await apiClient.put(`/admin/fish-categories/update/${id}`, requestData)
 
-      // 成功処理
       toaster.create({
-        title: '登録が成功しました',
+        title: '更新が成功しました',
         type: 'success',
       })
       console.log('API Response:', response)
-      router.push('/fishes')
-    /* eslint-disable @typescript-eslint/no-explicit-any */
+      router.push('/fish-categories')
+      /* eslint-disable @typescript-eslint/no-explicit-any */
     } catch (error: any) {
-      // エラー処理
       if (error instanceof Error) {
         toaster.create({
-          title: '登録に失敗しました',
+          title: '更新に失敗しました',
           type: 'error',
           description: error.message,
         })
@@ -34,9 +31,7 @@ export const useCreateFish = () => {
         console.error('Unexpected error:', error)
       }
     }
-  }, [])
+  }, [router])
 
-  return {
-    handleCreateRequest,
-  }
+  return { handleUpdateRequest }
 }

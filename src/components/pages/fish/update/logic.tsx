@@ -10,7 +10,6 @@ export const useUpdateFish = () => {
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
   const handleCreateRequest = useCallback(async (requestData: any) => {
-    console.log(requestData)
     try {
       // API リクエスト
       const response = await apiClient.post('/admin/fishes/create', requestData)
