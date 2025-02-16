@@ -23,9 +23,9 @@ export const generateStaticParams = async (): Promise<{ id: string }[]> => {
 }
 
 type FishCategoryPageProps = {
-  params: {
+  params: Promise<{
     id: string 
-  }
+  }>
 }
 
 const FishCategoryPage = async ({ params }: FishCategoryPageProps) => {

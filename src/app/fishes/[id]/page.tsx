@@ -25,9 +25,9 @@ export const generateStaticParams = async (): Promise<{ id: string }[]> => {
 }
 
 interface FishUpdatePageProps {
-  params: {
+  params: Promise<{
     id: string 
-  }
+  }>
 }
 
 const FishUpdatePage = async ({ params }: FishUpdatePageProps) => {
