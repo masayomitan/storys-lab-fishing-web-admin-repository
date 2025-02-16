@@ -24,7 +24,6 @@ const Fishes = ({
 
 	const {
 		tableRows,
-		handleUpdateRequest,
 		handleDeleteRequest
 	} = useFish(
 		fishes
@@ -42,7 +41,7 @@ const Fishes = ({
 			label: '更新',
 			colorScheme: 'green',
 			/* eslint-disable @typescript-eslint/no-explicit-any */
-			onClick: (item: any) => handleUpdateRequest(item.id),
+			onClick: (item: any) => handleUpdate(item.id),
 		},
 		{
 			label: '削除',
@@ -55,6 +54,9 @@ const Fishes = ({
 
 	const handleCreate = () => {
     router.push('/fishes/create')
+  }
+  const handleUpdate = (id: number) => {
+    router.push('/fishes/' + id)
   }
 
 	const handleConfirmDelete = () => {

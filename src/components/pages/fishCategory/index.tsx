@@ -27,6 +27,7 @@ const FishCategories = ({
 	} = useFishCategory(
 		fishCategories
 	)
+
 	const columns: TableColumnsType[] = [
 		{ header: 'ID', accessor: 'id' },
 		{ header: '名称', accessor: 'name' },

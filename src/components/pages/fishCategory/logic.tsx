@@ -47,10 +47,6 @@ export const useFishCategory = (
 		setTableRows(getFishCategoryRows(initialFishCategories))
   }, [initialFishCategories])
 
-  const handleUpdateRequest = async (id: string) => {
-    console.log(id)
-  }
-
 	const handleDeleteRequest = async (id: string) => {
     try {
       await apiClient.delete(`/admin/fish-categories/delete/${id}`)
@@ -66,7 +62,6 @@ export const useFishCategory = (
 
 	return {
     tableRows,
-    handleUpdateRequest,
     handleDeleteRequest,
     setTableRows,
   }

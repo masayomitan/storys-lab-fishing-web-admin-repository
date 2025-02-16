@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react'
-import FishCategories from '@/components/pages/fishCategory/update/index'
+import FishCategoryUpdate from '@/components/pages/fishCategory/update/index'
 
 export const revalidate = 60
 
@@ -44,7 +44,7 @@ const FishCategoryPage = async ({ params }: FishCategoryPageProps) => {
   const fishCategory = await res.json()
   return (
     <Box p={4} bg='white' borderRadius='md' boxShadow='sm'>
-      <FishCategories fishCategory={fishCategory} />
+      <FishCategoryUpdate fishCategory={fishCategory} />
     </Box>
   )
 }

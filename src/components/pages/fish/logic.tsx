@@ -50,11 +50,6 @@ export const useFish = (
 		setTableRows(getFishCategoryRows(initialFishes))
   }, [initialFishes])
 
-  const handleUpdateRequest = async (id: string) => {
-    router.push(`/fishes/update/${id}`)
-  }
-  
-
 	const handleDeleteRequest = async (id: string) => {
     try {
       await apiClient.delete(`/admin/fishes/delete/${id}`)
@@ -63,6 +58,7 @@ export const useFish = (
       const formattedTableRows = getRowsAfterDeleted(deletedTableRows)
       setTableRows(formattedTableRows);
       successToast('削除しました')
+      router.push('/fishes')
     } catch (error) {
       console.error(error)
       errorToast('削除に失敗しました')
@@ -71,7 +67,6 @@ export const useFish = (
 
 	return {
     tableRows,
-    handleUpdateRequest,
     handleDeleteRequest,
     setTableRows,
   }

@@ -27,7 +27,7 @@ import { useUpdateFish } from './logic'
 type FishFormData = z.infer<typeof fishSchema>
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const FishUpdate = ({ fishCategories }: any) => {
+const FishUpdate = ({ fish, fishCategories }: any) => {
   const mappedFishCategories = createListCollection({
     /* eslint-disable @typescript-eslint/no-explicit-any */
     items: fishCategories.map((category: any) => ({
@@ -44,21 +44,21 @@ const FishUpdate = ({ fishCategories }: any) => {
   } = useForm<FishFormData>({
     resolver: zodResolver(fishSchema),
     defaultValues: {
-      name: '',
-      scientific_name: '',
-      description: '',
-      fish_category_id: 0,
-      length: 0.0,
-      weight: 0.0,
-      habitat: '',
-      depth_range_min: 0,
-      depth_range_max: 0,
-      water_temperature_range_min: 0,
-      water_temperature_range_max: 0,
+      name: fish?.name || '',
+      scientific_name: fish?.scientific_name || '',
+      description: fish?.description || '',
+      fish_category_id: fish?.fish_category_id || 0,
+      length: fish?.length || 0.0,
+      weight: fish?.weight || 0.0,
+      habitat: fish?.habitat || '',
+      depth_range_min: fish?.depth_range_min || 0,
+      depth_range_max: fish?.depth_range_max || 0,
+      water_temperature_range_min: fish?.water_temperature_range_min || 0,
+      water_temperature_range_max: fish?.water_temperature_range_max || 0,
     },
   })
 
-  const { handleCreateRequest } = useUpdateFish()
+  const { handleUpdateRequest } = useUpdateFish()
 
   return (
     <Box p={6} bg='white' borderRadius='md' boxShadow='sm'>
@@ -66,7 +66,7 @@ const FishUpdate = ({ fishCategories }: any) => {
         魚更新フォーム
       </Text>
 
-      <form onSubmit={handleSubmit(handleCreateRequest)}>
+      <form onSubmit={handleSubmit((data) => handleUpdateRequest(fish.id, data))}>
         <Fieldset.Root>
           <Stack>
             <Fieldset.Legend>魚の情報</Fieldset.Legend>
@@ -247,7 +247,7 @@ const FishUpdate = ({ fishCategories }: any) => {
         </Fieldset.Root>
 
         <Button type='submit' colorScheme='blue' w='full' mt={4}>
-          登録
+          更新
         </Button>
       </form>
     </Box>
