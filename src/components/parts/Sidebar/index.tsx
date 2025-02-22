@@ -40,8 +40,8 @@ const menuItems: MenuItem[] = [
       {
         label: 'エリア(作成中)',
         links: [
-          { label: 'エリア一覧', href: '#area-list' },
-          { label: 'エリア登録', href: '#area-create' },
+          { label: 'エリア一覧', href: '/areas' },
+          { label: 'エリア登録', href: '/areas/create' },
         ],
       },
       {

@@ -1,17 +1,25 @@
-import { Box, Text } from "@chakra-ui/react";
-// import Layout from '../../../../../storys-lab-fishing-web-repository/src/components/parts/Layout/layout'
+import { Box } from '@chakra-ui/react'
+import Areas from '@/components/pages/area/index'
+import apiClient from '@/lib/apiClient'
+import Layout from '@/components/parts/Layout'
+export const revalidate = 0
+const AreaPage = async () => {
 
-const AreaAdminPage = () => {
-  return (
-    // <Layout>
-      <Box p={4} bg="white" borderRadius="md" boxShadow="sm">
-        <Text fontSize="lg" fontWeight="bold">
-          魚管理
-        </Text>
-        <Text mt={2}>ここで魚のデータを管理します。</Text>
-      </Box>
-    // </Layout>
-  )
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+	const areas = await apiClient.get<any[]>('/admin/areas', {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		cache: 'no-cache',
+	})
+
+	return (
+		<Layout>
+			<Box p={4} bg='white' borderRadius='md' boxShadow='sm'>
+				<Areas areas={areas} />
+			</Box>
+		</Layout>
+	)
 }
 
-export default AreaAdminPage
+export default AreaPage
