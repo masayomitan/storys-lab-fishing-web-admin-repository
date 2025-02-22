@@ -9,6 +9,7 @@ import {
   Box,
   Button,
   Text,
+  Textarea,
   Fieldset,
   Input,
   Stack,
@@ -144,8 +145,7 @@ const FishCreate = ({ fishCategories, fishImages }: any) => {
 
             {/* 説明 */}
             <Field label='説明'>
-              <Input
-                type='text'
+              <Textarea
                 placeholder='説明を入力してください'
                 {...register('description')}
               />

@@ -8,6 +8,7 @@ import {
   Box,
   Button,
   Text,
+  Textarea,
   Fieldset,
   Input,
   Stack,
@@ -105,7 +106,7 @@ const FishUpdate = ({ fish, fishCategories }: any) => {
                           key={category.id}
                           item={category.id.toString()}
                         >
-                          {category.name}
+                          {category.name} / {category.family_name}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -130,8 +131,7 @@ const FishUpdate = ({ fish, fishCategories }: any) => {
 
             {/* 説明 */}
             <Field label='説明'>
-              <Input
-                type='text'
+              <Textarea
                 placeholder='説明を入力してください'
                 {...register('description')}
               />

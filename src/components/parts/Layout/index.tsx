@@ -1,18 +1,19 @@
 import { Box, Flex, Text, HStack } from '@chakra-ui/react'
 import { ReactNode } from 'react'
-import Head from 'next/head'
 import Side from '@/components/parts/Sidebar'
 
 interface LayoutProps {
   children: ReactNode
 }
 
-const Dashboard = ({ children }: LayoutProps) => {
+export const metadata = {
+  title: '管理画面 | Fishing App',
+  description: 'Fishing App の管理画面',
+}
+
+const Layout = ({ children }: LayoutProps) => {
   return (
     <Flex h='100vh'>
-      <Head>
-        <title>{'title'}</title>
-      </Head>
       <Side />
 
       {/* メインコンテンツ */}
@@ -36,4 +37,4 @@ const Dashboard = ({ children }: LayoutProps) => {
   )
 }
 
-export default Dashboard
+export default Layout
