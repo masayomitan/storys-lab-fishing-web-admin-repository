@@ -8,7 +8,7 @@ const AreaCreatePage = async () => {
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
   const prefectures = await apiClient.get<any[]>(`/admin/prefectures`)
-
+  
   /* eslint-disable @typescript-eslint/no-explicit-any */
   const areaImages = await apiClient.get<any[]>(`/admin/images?type=2`)
 

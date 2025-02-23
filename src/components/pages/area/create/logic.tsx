@@ -20,7 +20,7 @@ export const useCreateArea = () => {
         type: 'success',
       })
       console.log('API Response:', response)
-      router.push('/fishes')
+      router.push('/areas')
     /* eslint-disable @typescript-eslint/no-explicit-any */
     } catch (error: any) {
       // エラー処理

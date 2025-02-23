@@ -34,7 +34,7 @@ type AreaFormData = z.infer<typeof areaSchema>
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const AreaCreate = ({ areaImages, prefectures }: any) => {
   const [selectedImages, setSelectedImages] = useState<[]>([])
-	console.log(prefectures)
+
 	const {
 		register,
 		handleSubmit,
@@ -66,7 +66,6 @@ const AreaCreate = ({ areaImages, prefectures }: any) => {
     setValue('images', selectedImages)
   }
 
-  console.log(areaImages)
   return (
     <Box p={6} bg='white' borderRadius='md' boxShadow='sm'>
       <Text fontSize='xl' fontWeight='bold' mb={4}>
