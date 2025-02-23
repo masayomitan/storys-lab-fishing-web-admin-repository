@@ -22,8 +22,8 @@ import {
   SelectTrigger,
   SelectValueText,
 } from '@/components/ui/select'
-
 import { Field } from '@/components/ui/field'
+
 import { fishSchema, ImageType } from './constant'
 import { useCreateFish } from './logic'
 import SetImages from '@/components/parts/Modal/setImages'
@@ -57,6 +57,7 @@ const FishCreate = ({ fishCategories, fishImages }: any) => {
       images: []
     },
   })
+  const { handleCreateRequest } = useCreateFish()
 
   const mappedFishCategories = createListCollection({
     /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -67,13 +68,10 @@ const FishCreate = ({ fishCategories, fishImages }: any) => {
   })
 
   const handleImageSelect = (imageIds: number[]) => {
-
     const selectedImages = fishImages.filter((image: any) => imageIds.includes(image.id))
     setSelectedImages(selectedImages)
     setValue('images', selectedImages)
   }
-
-  const { handleCreateRequest } = useCreateFish()
 
   return (
     <Box p={6} bg='white' borderRadius='md' boxShadow='sm'>
@@ -87,6 +85,7 @@ const FishCreate = ({ fishCategories, fishImages }: any) => {
             <Fieldset.Legend>魚の情報</Fieldset.Legend>
           </Stack>
           <Fieldset.Content>
+
             {/* 名称 */}
             <Field label='名称' invalid={!!errors.name}>
               <Input
@@ -257,32 +256,32 @@ const FishCreate = ({ fishCategories, fishImages }: any) => {
               )}
             </Field>
 
+            <SetImages 
+              images={fishImages}
+              onSelect={handleImageSelect}
+            />
+            {/* Selected Images */}
+            <Field label="選択された画像">
+              <Stack direction="row" flexWrap="wrap" gap={2}>
+                {selectedImages.map((selectedImage: ImageType) => (
+                  <Box
+                    key={selectedImage.id}
+                    borderRadius="full"
+                    colorScheme="blue"
+                  >
+                    <Image
+                      src={selectedImage.image_url}
+                      alt={selectedImage.name}
+                      width={100}
+                      height={100}
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </Box>
+                ))}
+              </Stack>
+            </Field>
           </Fieldset.Content>
         </Fieldset.Root>
-        <SetImages 
-          images={fishImages}
-          onSelect={handleImageSelect}
-        />
-        {/* Selected Images */}
-        <Field label="選択された画像">
-          <Stack direction="row" flexWrap="wrap" gap={2}>
-            {selectedImages.map((selectedImage: ImageType) => (
-              <Box
-                key={selectedImage.id}
-                borderRadius="full"
-                colorScheme="blue"
-              >
-                <Image
-                  src={selectedImage.image_url}
-                  alt={selectedImage.name}
-                  width={100}
-                  height={100}
-                  style={{ objectFit: 'cover' }}
-                />
-              </Box>
-            ))}
-          </Stack>
-        </Field>
 
         <Button type='submit' colorScheme='blue' w='full' mt={4}>
           登録

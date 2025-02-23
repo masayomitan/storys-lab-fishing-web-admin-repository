@@ -4,25 +4,24 @@ import apiClient from '@/lib/apiClient'
 import Layout from '@/components/parts/Layout'
 export const revalidate = 0
 
-const FishCreatePage = async () => {
+const AreaCreatePage = async () => {
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
-  const fishImages = await apiClient.get<any[]>(`/admin/images?type=2`, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    cache: 'no-cache',
-  })
+  const prefectures = await apiClient.get<any[]>(`/admin/prefectures`)
+
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  const areaImages = await apiClient.get<any[]>(`/admin/images?type=2`)
 
   return (
     <Layout>
       <Box p={4} bg='white' borderRadius='md' boxShadow='sm'>
         <AreaCreate
-          fishImages={fishImages}
+          areaImages={areaImages}
+          prefectures={prefectures}
         />
       </Box>
     </Layout>
   )
 }
 
-export default FishCreatePage
+export default AreaCreatePage
