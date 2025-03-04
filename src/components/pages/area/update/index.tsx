@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -26,31 +26,41 @@ import {
 import { Field } from '@/components/ui/field'
 
 import { areaSchema, ImageType } from './constant'
-import { useCreateArea } from './logic'
+import { useUpdateArea } from './logic'
 import SetImages from '@/components/parts/Modal/setImages'
 
 type AreaFormData = z.infer<typeof areaSchema>
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const AreaCreate = ({ areaImages, prefectures }: any) => {
+const AreaUpdate = ({ area, prefectures, areaImages }: any) => {
   const [selectedImages, setSelectedImages] = useState<[]>([])
+  const [selectedPrefecture, setSelectedPrefecture] = useState<any | null>(null)
 
 	const {
 		register,
 		handleSubmit,
 		control,
-		setValue,
+    setValue,
 		formState: { errors },
 	} = useForm<AreaFormData>({
 		resolver: zodResolver(areaSchema),
 		defaultValues: {
-			name: '',
-			description: '',
-			prefecture_id: 0,
+			name: area?.name || '',
+			description: area?.description || '',
+			prefecture_id: area?.prefecture_id || 0,
 			images: []
 		}
 	})
-	const { handleCreateRequest } = useCreateArea()
+
+  useEffect(() => {
+    if (area.prefecture_id) {
+      const initialPrefecture = prefectures.find((p: any) => p.id === area.prefecture_id)
+      console.log(initialPrefecture)
+      setSelectedPrefecture(initialPrefecture || null)
+    }
+  }, [area.prefecture_id, prefectures])
+  console.log(selectedPrefecture)
+	const { handleUpdateRequest } = useUpdateArea()
 
   const mappedPrefectures = createListCollection({
     /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -61,10 +71,10 @@ const AreaCreate = ({ areaImages, prefectures }: any) => {
   })
 
 	const handleImageSelect = (imageIds: number[]) => {
-    const selectedImages = areaImages.filter((image: any) => imageIds.includes(image.id))
-    setSelectedImages(selectedImages)
-    setValue('images', selectedImages)
-  }
+      const selectedImages = areaImages.filter((image: any) => imageIds.includes(image.id))
+      setSelectedImages(selectedImages)
+      setValue('images', selectedImages)
+    }
 
   return (
     <Box p={6} bg='white' borderRadius='md' boxShadow='sm'>
@@ -72,7 +82,7 @@ const AreaCreate = ({ areaImages, prefectures }: any) => {
         エリア登録フォーム
       </Text>
 
-			<form onSubmit={handleSubmit(handleCreateRequest)}>
+			<form onSubmit={handleSubmit((data) => handleUpdateRequest(area.id, data))}>
 				<Fieldset.Root>
           <Stack>
             <Fieldset.Legend>エリアの情報</Fieldset.Legend>
@@ -94,37 +104,40 @@ const AreaCreate = ({ areaImages, prefectures }: any) => {
             </Field>
 
             {/* 科のカテゴリー */}
-            <Field label='都道府県' invalid={!!errors.prefecture_id}>
-              <Controller
-                control={control}
-                name='prefecture_id'
-                render={({ field }) => (
-                  <SelectRoot
-                    onValueChange={(value) => field.onChange(parseInt(value.value[0]))}
-                    collection={mappedPrefectures}
-                  >
-                    <SelectTrigger>
-                      <SelectValueText placeholder='都道府県を選択してください' />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {prefectures.map((category: any) => (
-                        <SelectItem
-                          key={category.id}
-                          item={category.id.toString()}
-                        >
-                          {category.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </SelectRoot>
+            {selectedPrefecture && 
+              <Field label='都道府県' invalid={!!errors.prefecture_id}>
+                <Controller
+                  control={control}
+                  name='prefecture_id'
+                  render={({field}) => (
+                    <SelectRoot
+                      defaultValue={[selectedPrefecture.id.toString()]}
+                      onValueChange={(value) => field.onChange(parseInt(value.value[0]))}
+                      collection={mappedPrefectures}
+                    >
+                      <SelectTrigger>
+                        <SelectValueText placeholder='都道府県を選択してください'/>
+                      </SelectTrigger>
+                      <SelectContent>
+                        {prefectures.map((category: any) => (
+                          <SelectItem
+                            key={category.id}
+                            item={category.id.toString()}
+                          >
+                            {category.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </SelectRoot>
+                  )}
+                />
+                {errors.prefecture_id && (
+                  <Text color='red.500' fontSize='sm'>
+                    {errors.prefecture_id.message}
+                  </Text>
                 )}
-              />
-              {errors.prefecture_id && (
-                <Text color='red.500' fontSize='sm'>
-                  {errors.prefecture_id.message}
-                </Text>
-              )}
-            </Field>
+              </Field>
+            }
 
             {/* 説明 */}
             <Field label='説明'>
@@ -170,4 +183,4 @@ const AreaCreate = ({ areaImages, prefectures }: any) => {
   )
 }
 
-export default AreaCreate
+export default AreaUpdate

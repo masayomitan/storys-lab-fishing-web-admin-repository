@@ -4,7 +4,7 @@ import {
   useState,
 } from 'react'
 import { Box, Button } from '@chakra-ui/react'
-// import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { Toaster } from '@/components/ui/toaster'
 
 // import FishCategoryCreate from '@/components/pages/fishCategory/create'
@@ -19,7 +19,7 @@ const Areas = ({
 	areas,
   /* eslint-disable @typescript-eslint/no-explicit-any */
 }: any) => {
-	// const router = useRouter()
+	const router = useRouter()
   const [deleteDialog, setDeleteDialog] = useState<string | null>(null)
 
 	const {
@@ -53,11 +53,11 @@ const Areas = ({
 	]
 
 	const handleCreate = () => {
-    // router.push('/areas/create')
+    router.push('/areas/create')
   }
   const handleUpdate = (id: number) => {
     console.log(id)
-    // router.push('/areas/' + id)
+    router.push('/areas/' + id)
   }
 
 	const handleConfirmDelete = () => {

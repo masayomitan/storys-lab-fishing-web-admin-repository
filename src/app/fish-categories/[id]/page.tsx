@@ -28,7 +28,7 @@ type FishCategoryPageProps = {
   }>
 }
 
-const FishCategoryPage = async ({ params }: FishCategoryPageProps) => {
+const FishCategoryUpdatePage = async ({ params }: FishCategoryPageProps) => {
   const { id } = await params
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/admin/fish-categories/${id}`, {
     method: 'GET',
@@ -49,4 +49,4 @@ const FishCategoryPage = async ({ params }: FishCategoryPageProps) => {
   )
 }
 
-export default FishCategoryPage
+export default FishCategoryUpdatePage
