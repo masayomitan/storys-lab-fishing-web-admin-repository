@@ -58,7 +58,7 @@ export const useArea = (
       const formattedTableRows = getRowsAfterDeleted(deletedTableRows)
       setTableRows(formattedTableRows);
       successToast('削除しました')
-      router.push('/fishes')
+      router.push('/areas')
     } catch (error) {
       console.error(error)
       errorToast('削除に失敗しました')

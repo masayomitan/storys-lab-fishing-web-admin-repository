@@ -24,7 +24,7 @@ const Areas = ({
 
 	const {
 		tableRows,
-		// handleDeleteRequest
+		handleDeleteRequest
 	} = useArea(
 		areas
 	)
@@ -61,10 +61,10 @@ const Areas = ({
   }
 
 	const handleConfirmDelete = () => {
-    // if (deleteDialog) {
-    //   handleDeleteRequest(deleteDialog)
-    //   setDeleteDialog(null)
-    // }
+    if (deleteDialog) {
+      handleDeleteRequest(deleteDialog)
+      setDeleteDialog(null)
+    }
   }
 
   return (
