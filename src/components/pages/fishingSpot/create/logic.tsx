@@ -12,7 +12,7 @@ const router = useRouter()
 const handleCreateRequest = useCallback(async (requestData: any) => {
     try {
         // API リクエスト
-        const response = await apiClient.post('/admin/fishing-spot/create', requestData)
+        const response = await apiClient.post('/admin/fishing-spots/create', requestData)
 
         // 成功処理
         toaster.create({
@@ -20,7 +20,7 @@ const handleCreateRequest = useCallback(async (requestData: any) => {
             type: 'success',
         })
         console.log('API Response:', response)
-        router.push('/fishing-spot')
+        router.push('/fishing-spots')
     /* eslint-disable @typescript-eslint/no-explicit-any */
     } catch (error: any) {
         // エラー処理
