@@ -48,7 +48,7 @@ const menuItems: MenuItem[] = [
         label: '釣り場',
         links: [
           { label: '釣り場一覧', href: '/fishing-spots' },
-          { label: '釣り場登録', href: '/fishing-spot/create' },
+          { label: '釣り場登録', href: '/fishing-spots/create' },
         ],
       },
       {
