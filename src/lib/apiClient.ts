@@ -163,6 +163,7 @@ class ApiClient {
 
     if (method === 'GET') {
       fetchOptions.headers = {
+        'Content-Type': 'application/json',
         'Cache-Control': 'no-cache',
         ...fetchOptions.headers,
       }

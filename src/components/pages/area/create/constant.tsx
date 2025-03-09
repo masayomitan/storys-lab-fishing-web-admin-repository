@@ -7,12 +7,16 @@ export type ImageType = {
 }
 
 export const areaSchema = z.object({
-  name: z.string().min(1, '名称は必須です'),
-  description: z.string().optional(),
+  name: z.
+      string().
+      min(1, '名称は必須です'),
+  description: z.
+      string().
+      optional(),
   prefecture_id: z
-    .number({ invalid_type_error: '都道府県を選択してください' })
-    .min(1, '都道府県は必須です'),
+      .number({ invalid_type_error: '都道府県を選択してください' })
+      .min(1, '都道府県は必須です'),
   images: z
-    .array(z.any())
-    .optional(),
+      .array(z.any())
+      .optional(),
 })
