@@ -19,5 +19,12 @@ export const fishingSpotSchema = z.object({
         .string()
         .max(2000, '説明は2000文字以内で入力してください')
         .optional(),
+    tags: z
+        .array(z.any())
+        .optional(),
+    images: z
+        .array(z.any())
+        .optional(),
+
 
 })

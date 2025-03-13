@@ -43,6 +43,8 @@ const FishingSpotCreate = ({ fishingSpot, areas, fishingSpotImages }: any) => {
             area_id: fishingSpot.area_id || 0,
             description: fishingSpot.description || '',
             recommended_fishing_methods: fishingSpot.recommended_fishing_methods || 0,
+            tags: [],
+            images: [],
         },
     })
 

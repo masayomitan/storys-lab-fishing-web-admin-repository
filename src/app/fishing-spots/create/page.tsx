@@ -9,6 +9,9 @@ const FishingSpotPage = async () => {
     const areas = await apiClient.get<any[]>(`/admin/areas`)
 
     /* eslint-disable @typescript-eslint/no-explicit-any */
+    const tags = await apiClient.get<any[]>(`/admin/tags`)
+
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     const fishingSpotImages = await apiClient.get<any[]>(`/admin/images?type=3`)
 
     return (
@@ -16,6 +19,7 @@ const FishingSpotPage = async () => {
         <Box p={4} bg='white' borderRadius='md' boxShadow='sm'>
             <FishingSpotCreate 
                 areas={areas}
+                tags={tags}
                 fishingSpotImages={fishingSpotImages}
             />
         </Box>

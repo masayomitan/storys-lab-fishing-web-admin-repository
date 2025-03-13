@@ -115,6 +115,7 @@ const Side = () => {
             <Collapsible.Root key={`${menu.label}-${menuIndex}`} defaultOpen={isParentMenuOpen(menu)}>
 
               <Collapsible.Trigger
+                cursor='pointer'
                 paddingY='3'
               >
                 {menu.label}
@@ -124,9 +125,11 @@ const Side = () => {
                 {menu.subItems ? (
                   menu.subItems.map((sub, subIndex) => (
                     <Collapsible.Root key={`${sub.label}-${subIndex}`} defaultOpen={isMenuOpen(sub.links)}>
-                      <Box padding='4'>
+                      <Box p={4}>
                         <Collapsible.Trigger
+                          cursor='pointer'
                           paddingY='3'
+                          _hover={{ color: 'teal.300' }}
                         >
                           {sub.label}
                         </Collapsible.Trigger>
@@ -134,10 +137,10 @@ const Side = () => {
                           {sub.links.map((link, linkIndex) => (
                             <Box
                               key={`${link.href}-${linkIndex}`}
-                              padding='4'
+                              p={4}
                               bg={pathname === link.href ? 'teal.800' : 'transparent'}
                             >
-                              <Link href={link.href} _hover={{ color: 'teal.300' }}>
+                              <Link href={link.href} cursor='pointer' _hover={{ color: 'teal.300' }} >
                                 {link.label}
                               </Link>
                             </Box>
@@ -150,7 +153,7 @@ const Side = () => {
                   menu.links.map((link, linkIndex) => (
                     <Box
                       key={`${link.href}-${linkIndex}`}
-                      padding='4'
+                      p={4}
                       bg={pathname === link.href ? 'teal.800' : 'transparent'}
                       color={pathname === link.href ? 'white' : 'inherit'}
                     >
@@ -167,7 +170,7 @@ const Side = () => {
         </VStack>
 
         <Text fontSize='sm' color='gray.400'>
-          © 2024 管理画面
+          © 2025 管理画面
         </Text>
       </Box>
     </Box>

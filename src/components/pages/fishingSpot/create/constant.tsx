@@ -1,5 +1,11 @@
 import { z } from 'zod'
 
+export type ImageType = {
+	id: number
+	image_url: string
+	name: string
+}
+
 // フィールド構成に合わせた Zod スキーマ
 export const fishingSpotSchema = z.object({
     name: z
@@ -18,6 +24,12 @@ export const fishingSpotSchema = z.object({
     description: z
         .string()
         .max(2000, '説明は2000文字以内で入力してください')
+        .optional(),
+    tags: z
+        .array(z.any())
+        .optional(),
+    images: z
+        .array(z.any())
         .optional(),
 
 })

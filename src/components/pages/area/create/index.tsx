@@ -135,8 +135,8 @@ const AreaCreate = ({ areaImages, prefectures }: any) => {
 						</Field>
 
 						<SetImages 
-						images={areaImages}
-						onSelect={handleImageSelect}
+							images={areaImages}
+							onSelect={handleImageSelect}
 						/>
 						{/* Selected Images */}
 						<Field label="選択された画像">
