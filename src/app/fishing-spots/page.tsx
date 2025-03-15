@@ -4,7 +4,8 @@ import apiClient from '@/lib/apiClient'
 import Layout from '@/components/parts/Layout'
 
 export const revalidate = 0
-const AreaPage = async () => {
+
+const FishingSpotPage = async () => {
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
 	const fishingSpots = await apiClient.get<any[]>('/admin/fishing-spots')
@@ -18,4 +19,4 @@ const AreaPage = async () => {
 	)
 }
 
-export default AreaPage
+export default FishingSpotPage

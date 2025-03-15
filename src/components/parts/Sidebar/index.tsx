@@ -116,6 +116,7 @@ const Side = () => {
 
               <Collapsible.Trigger
                 cursor='pointer'
+                _hover={{ color: 'teal.300' }}
                 paddingY='3'
               >
                 {menu.label}
