@@ -41,12 +41,20 @@ const FishingSpotUpdatePage = async ({ params }: FishUpdatePageProps) => {
   /* eslint-disable @typescript-eslint/no-explicit-any */
   const areas = await apiClient.get<any[]>(`/admin/areas`)
 
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    const tags = await apiClient.get<any[]>(`/admin/tags`)
+
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    const fishingSpotImages = await apiClient.get<any[]>(`/admin/images?type=3`)
+
   return (
     <Layout>
       <Box p={4} bg="white" borderRadius="md" boxShadow="sm">
         <FishingSpotUpdate 
-          areas={areas}
           fishingSpot={fishingSpot}
+          areas={areas}
+          tags={tags}
+          fishingSpotImages={fishingSpotImages}
         />
       </Box>
     </Layout>
