@@ -25,10 +25,8 @@ const ImageGrid: React.FC<ImageGridProps> = ({ images }) => {
         {images.map((image, index) => (
           <Box
             key={index}
-            borderWidth="1px"
-            overflow="hidden"
-            width="250px"
-            height="250px"
+            maxWidth="250px"
+            maxHeight="250px"
           >
             <Image
               src={image.image_url}
