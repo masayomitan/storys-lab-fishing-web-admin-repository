@@ -32,7 +32,7 @@ type FishingSpotFormData = z.infer<typeof fishingSpotSchema>
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const FishingSpotUpdate = ({ fishingSpot, areas, tags, fishingSpotImages }: any) => {
-    // 初期値がある場合はそのまま useState にセット
+
     const [selectedImages, setSelectedImages] = useState(fishingSpot.Images || [])
     console.log(fishingSpot.Images)
     const {
@@ -170,35 +170,35 @@ const FishingSpotUpdate = ({ fishingSpot, areas, tags, fishingSpotImages }: any)
                                         }
                                         collection={mappedTags}
                                     >
-                                    <SelectTrigger>
-                                        <SelectValueText placeholder='タグを選択してください' />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {tags.map((tag: any) => (
-                                    <SelectItem key={tag.id} item={tag.id.toString()}>
-                                        {tag.name}
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </SelectRoot>
+                                        <SelectTrigger>
+                                            <SelectValueText placeholder='タグを選択してください' />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {tags.map((tag: any) => (
+                                        <SelectItem key={tag.id} item={tag.id.toString()}>
+                                            {tag.name}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </SelectRoot>
+                            )}
+                        />
+                        {errors.tags && (
+                            <Text color='red.500' fontSize='sm'>
+                            {errors.tags.message}
+                            </Text>
                         )}
-                    />
-                    {errors.tags && (
-                        <Text color='red.500' fontSize='sm'>
-                        {errors.tags.message}
-                        </Text>
-                    )}
                     </Field>
 
-                        {/* 画像 */}
-                        <SetImages images={fishingSpotImages} onSelect={handleImageSelect} />
+                    {/* 画像 */}
+                    <SetImages images={fishingSpotImages} onSelect={handleImageSelect} />
 
-                        {/* Selected Images */}
-                        <Field label='選択された画像'>
+                    {/* Selected Images */}
+                    <Field label='選択された画像'>
                         <Stack direction='row' flexWrap='wrap' gap={2}>
-                            {selectedImages.map((selectedImage: any) => (
+                            {selectedImages.map((selectedImage: any, index: number) => (
                             <Box
-                                key={selectedImage.id}
+                                key={index}
                                 borderRadius='full'
                                 colorScheme='blue'
                             >
@@ -207,13 +207,17 @@ const FishingSpotUpdate = ({ fishingSpot, areas, tags, fishingSpotImages }: any)
                                 alt={selectedImage.name}
                                 width={100}
                                 height={100}
-                                style={{ objectFit: 'cover' }}
+                                style={{  
+                                    objectFit: 'cover', 
+                                    width: 'auto', 
+                                    height: 'auto' 
+                                }}
                                 />
                             </Box>
                             ))}
                         </Stack>
-                        </Field>
-                    </Fieldset.Content>
+                    </Field>
+                </Fieldset.Content>
                 </Fieldset.Root>
 
                 <Button type='submit' colorScheme='blue' w='full' mt={4}>

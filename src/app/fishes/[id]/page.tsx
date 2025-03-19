@@ -6,48 +6,43 @@ import Layout from '@/components/parts/Layout'
 export const revalidate = 0
 
 export const generateStaticParams = async (): Promise<{ id: string }[]> => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/admin/fish-categories`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    cache: 'force-cache',
-  })
-  if (!res.ok) {
-    return []
-  }
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/admin/fish-categories`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        cache: 'force-cache',
+    })
+    if (!res.ok) {
+        return []
+    }
 
-  const fishCategories = await res.json()
+    const fishCategories = await res.json()
 
-  return fishCategories.map((category: { id: number }) => ({
-    id: category.id.toString(),
-  }))
+    return fishCategories.map((category: { id: number }) => ({
+        id: category.id.toString(),
+    }))
 }
 
 interface FishUpdatePageProps {
-  params: Promise<{
-    id: string 
-  }>
+    params: Promise<{
+        id: string 
+    }>
 }
 
 const FishUpdatePage = async ({ params }: FishUpdatePageProps) => {
-  const { id } = await params
+    const { id } = await params
 
-  // 魚カテゴリデータを取得
-  /* eslint-disable @typescript-eslint/no-explicit-any */
-  const fishCategories = await apiClient.get<any[]>('/admin/fish-categories', {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
+    // 魚カテゴリデータを取得
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    const fishCategories = await apiClient.get<any[]>('/admin/fish-categories',)
 
-  // 指定された魚データを取得
-  /* eslint-disable @typescript-eslint/no-explicit-any */
-  const fish = await apiClient.get<any[]>(`/admin/fishes/${id}`, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
+    // 指定された魚データを取得
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    const fish = await apiClient.get<any[]>(`/admin/fishes/${id}`)
+
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    const fishImages = await apiClient.get<any[]>(`/admin/images?type=1`)
 
   return (
     <Layout>
@@ -55,6 +50,7 @@ const FishUpdatePage = async ({ params }: FishUpdatePageProps) => {
         <FishUpdate 
           fish={fish}
           fishCategories={fishCategories}
+          fishImages={fishImages}
         />
       </Box>
     </Layout>

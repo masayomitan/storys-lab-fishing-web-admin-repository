@@ -6,20 +6,10 @@ export const revalidate = 0
 
 const FishCreatePage = async () => {
   /* eslint-disable @typescript-eslint/no-explicit-any */
-  const fishCategories = await apiClient.get<any[]>(`/admin/fish-categories`, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    cache: 'no-cache',
-  })
+  const fishCategories = await apiClient.get<any[]>(`/admin/fish-categories`)
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
-  const fishImages = await apiClient.get<any[]>(`/admin/images?type=1`, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    cache: 'no-cache',
-  })
+  const fishImages = await apiClient.get<any[]>(`/admin/images?type=1`)
 
   return (
     <Layout>

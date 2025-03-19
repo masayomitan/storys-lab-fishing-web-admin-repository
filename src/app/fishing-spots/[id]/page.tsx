@@ -31,15 +31,15 @@ interface FishUpdatePageProps {
 }
 
 const FishingSpotUpdatePage = async ({ params }: FishUpdatePageProps) => {
-  const { id } = await params
+    const { id } = await params
 
-  // 魚カテゴリデータを取得
-  /* eslint-disable @typescript-eslint/no-explicit-any */
-  const fishingSpot = await apiClient.get<any[]>(`/admin/fishing-spots/${id}`)
+    // 魚カテゴリデータを取得
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    const fishingSpot = await apiClient.get<any[]>(`/admin/fishing-spots/${id}`)
 
-  // 指定された魚データを取得
-  /* eslint-disable @typescript-eslint/no-explicit-any */
-  const areas = await apiClient.get<any[]>(`/admin/areas`)
+    // 指定された魚データを取得
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    const areas = await apiClient.get<any[]>(`/admin/areas`)
 
     /* eslint-disable @typescript-eslint/no-explicit-any */
     const tags = await apiClient.get<any[]>(`/admin/tags`)

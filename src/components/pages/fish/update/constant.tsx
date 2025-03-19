@@ -31,5 +31,8 @@ export const fishSchema = z.object({
     .optional(),
   fish_category_id: z
     .number({ invalid_type_error: '魚カテゴリーを選択してください' })
-    .min(1, '魚カテゴリーは必須です')
+    .min(1, '魚カテゴリーは必須です'),
+  images: z
+    .array(z.any())
+    .optional(),
 })
