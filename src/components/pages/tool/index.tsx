@@ -3,18 +3,19 @@
 import {
 	useState,
 } from 'react'
+
 import { Box, Button } from '@chakra-ui/react'
 import { useRouter } from 'next/navigation'
 import { Toaster } from '@/components/ui/toaster'
 
-import { useFish } from './logic'
+import { useTool } from './logic'
 import { TableColumnsType } from '@/components/parts/Table/type'
 import TableComponent from '@/components/parts/Table'
 
 import ConfirmDeleteDialog from '@/components/parts/Modal/confirmDeleteDialog'
 
-const Fishes = ({
-	fishes,
+const Tools = ({
+	tools,
 /* eslint-disable @typescript-eslint/no-explicit-any */
 }: any) => {
 	const router = useRouter()
@@ -23,13 +24,12 @@ const Fishes = ({
 	const {
 		tableRows,
 		handleDeleteRequest
-	} = useFish(
-		fishes
+	} = useTool(
+		tools
 	)
 	const columns: TableColumnsType[] = [
 		{ header: 'ID', accessor: 'id' },
 		{ header: '名称', accessor: 'name' },
-		{ header: '学名', accessor: 'scientific_name' },
 		{ header: '作成日時', accessor: 'created_at' },
 		{ header: '更新日時', accessor: 'updated_at' },
 		{ header: '', accessor: '' },
@@ -39,7 +39,7 @@ const Fishes = ({
 			colorScheme: 'green',
 			/* eslint-disable @typescript-eslint/no-explicit-any */
 			onClick: (item: any) => handleUpdate(item.id),
-		},{
+		}, {
 			label: '削除',
 			colorScheme: 'red',
 			bgColor: 'red',
@@ -49,10 +49,10 @@ const Fishes = ({
 	]
 
 	const handleCreate = () => {
-		router.push('/fishes/create')
+		router.push('/tools/create')
 	}
 	const handleUpdate = (id: number) => {
-		router.push('/fishes/' + id)
+		router.push('/tools/' + id)
 	}
 
 	const handleConfirmDelete = () => {
@@ -82,4 +82,4 @@ const Fishes = ({
 	)
 }
 
-export default Fishes
+export default Tools

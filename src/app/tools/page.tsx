@@ -1,17 +1,21 @@
-import { Box, Text } from "@chakra-ui/react"
-// import Layout from '../../../../storys-lab-fishing-web-repository/src/components/parts/Layout/layout'
+import { Box } from '@chakra-ui/react'
+import Tools from '@/components/pages/tool/index'
+import apiClient from '@/lib/apiClient'
+import Layout from '@/components/parts/Layout'
+export const revalidate = 0
 
-const ToolAdminPage = () => {
-  return (
-    // <Layout>
-      <Box p={4} bg="white" borderRadius="md" boxShadow="sm">
-        <Text fontSize="lg" fontWeight="bold">
-          魚管理
-        </Text>
-        <Text mt={2}>ここで魚のデータを管理します。</Text>
-      </Box>
-    // </Layout>
-  )
+const ToolAdminPage = async () => {
+
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    const tools = await apiClient.get<any[]>('/admin/tools')
+
+    return (
+		<Layout>
+			<Box p={4} bg='white' borderRadius='md' boxShadow='sm'>
+				<Tools tools={tools} />
+			</Box>
+		</Layout>
+    )
 }
 
 export default ToolAdminPage

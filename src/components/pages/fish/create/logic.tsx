@@ -34,7 +34,7 @@ export const useCreateFish = () => {
         console.error('Unexpected error:', error)
       }
     }
-  }, [])
+  }, [router])
 
   return {
     handleCreateRequest,
