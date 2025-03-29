@@ -62,7 +62,7 @@ const menuItems: MenuItem[] = [
         label: '道具',
         links: [
           { label: '道具一覧', href: 'tools' },
-          { label: '道具登録', href: 'tools' },
+          { label: '道具登録', href: 'tools/create' },
         ],
       },
       {
