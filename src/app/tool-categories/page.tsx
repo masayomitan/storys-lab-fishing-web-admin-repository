@@ -1,21 +1,21 @@
 import { Box } from '@chakra-ui/react'
-import Fishes from '@/components/pages/fish/index'
+import ToolCategories from '@/components/pages/toolCategory/index'
 import apiClient from '@/lib/apiClient'
 import Layout from '@/components/parts/Layout'
 export const revalidate = 0
 
-const FishPage = async () => {
+const ToolCategoryPage = async () => {
 
 	/* eslint-disable @typescript-eslint/no-explicit-any */
-	const fishes = await apiClient.get<any[]>('/admin/fishes')
+	const toolCategories = await apiClient.get<any[]>('/admin/tool-categories')
 
 	return (
 		<Layout>
 			<Box p={4} bg='white' borderRadius='md' boxShadow='sm'>
-				<Fishes fishes={fishes} />
+				<ToolCategories toolCategories={toolCategories} />
 			</Box>
 		</Layout>
 	)
 }
 
-export default FishPage
+export default ToolCategoryPage

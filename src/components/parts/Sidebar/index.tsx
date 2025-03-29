@@ -52,10 +52,17 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
-        label: '道具(作成中)',
+        label: '道具カテゴリ',
         links: [
-          { label: '道具一覧', href: '#tools-list' },
-          { label: '道具登録', href: '#tools-create' },
+          { label: '道具カテゴリ一覧', href: 'tool-categories' },
+          { label: '道具カテゴリ登録', href: 'tool-categories/create' },
+        ],
+      },
+      {
+        label: '道具',
+        links: [
+          { label: '道具一覧', href: 'tools' },
+          { label: '道具登録', href: 'tools' },
         ],
       },
       {
