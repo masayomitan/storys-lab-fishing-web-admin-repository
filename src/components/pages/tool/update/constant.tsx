@@ -8,11 +8,11 @@ export type ImageType = {
 
 export const toolSchema = z.object({
     tool_category_id: z
-        .number({ invalid_type_error: '魚カテゴリーを選択してください' })
-        .min(1, '魚カテゴリーは必須です'),
+        .number({ invalid_type_error: '道具カテゴリーを選択してください' })
+        .min(1, '道具カテゴリーは必須です'),
     material_id: z
-        .number({ invalid_type_error: '魚カテゴリーを選択してください' })
-        .min(1, '魚カテゴリーは必須です'),
+        .number({ invalid_type_error: '素材を選択してください' })
+        .min(1, '素材は必須です'),
     company_id: z.number().optional(),
     name: z.string().min(1, '名称は必須です'),
     description: z.string().optional(),
@@ -29,7 +29,10 @@ export const toolSchema = z.object({
         .nonnegative('範囲（最小値）は0以上で入力してください')
         .optional(),
     maker: z.string().optional(),
-    recommend: z.string().optional(),
+    recommend: z
+        .number({ invalid_type_error: '数値で入力してください' })
+        .nonnegative('0以上で入力してください')
+        .optional(),
     easy_fishing: z
         .number({ invalid_type_error: '数値で入力してください' })
         .nonnegative('0以上で入力してください')

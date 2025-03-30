@@ -31,7 +31,7 @@ import SetImages from '@/components/parts/Modal/setImages'
 type ToolFormData = z.infer<typeof toolSchema>
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const ToolCreate = ({ toolCategories, toolImages }: any) => {
+const ToolCreate = ({ toolCategories, materials, toolImages }: any) => {
     const [selectedImages, setSelectedImages] = useState<[]>([])
 
     const {
@@ -51,7 +51,7 @@ const ToolCreate = ({ toolCategories, toolImages }: any) => {
             weight: 0.0,
             price: 0,
             maker: '',
-            recommend: '',
+            recommend: 0,
             easy_fishing: 0,
             images: []
         },
@@ -63,6 +63,14 @@ const ToolCreate = ({ toolCategories, toolImages }: any) => {
         items: toolCategories.map((category: any) => ({
         label: category.name,
         value: category.id.toString(),
+        })),
+    })
+
+    const mappedMaterials = createListCollection({
+        /* eslint-disable @typescript-eslint/no-explicit-any */
+        items: materials.map((material: any) => ({
+        label: material.name,
+        value: material.id.toString(),
         })),
     })
 
@@ -134,10 +142,30 @@ const ToolCreate = ({ toolCategories, toolImages }: any) => {
 
                         {/* 素材（material_id） */}
                         <Field label="素材" invalid={!!errors.material_id}>
-                            <Input
-                                type="number"
-                                placeholder="素材IDを入力してください"
-                                {...register('material_id', { valueAsNumber: true })}
+                            <Controller
+                                control={control}
+                                name="material_id"
+                                render={({ field }) => (
+                                <SelectRoot
+                                    onValueChange={(value) => field.onChange(parseInt(value.value[0]))}
+                                    collection={mappedMaterials}
+                                    defaultValue={field.value ? [field.value.toString()] : []}
+                                >
+                                    <SelectTrigger>
+                                        <SelectValueText placeholder="道具カテゴリーを選択してください" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {materials.map((material: any) => (
+                                            <SelectItem
+                                                key={material.id}
+                                                item={material.id.toString()}
+                                            >
+                                                {material.name}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </SelectRoot>
+                                )}
                             />
                             {errors.material_id && (
                                 <Text color="red.500" fontSize="sm">
@@ -211,9 +239,9 @@ const ToolCreate = ({ toolCategories, toolImages }: any) => {
                         </Field>
 
                         {/* 推奨ポイント */}
-                        <Field label="おすすめポイント">
+                        <Field label="おすすめ度">
                             <Input
-                                type="text"
+                                type="number"
                                 placeholder="おすすめポイントを入力してください"
                                 {...register('recommend')}
                             />

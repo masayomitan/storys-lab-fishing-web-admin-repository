@@ -10,6 +10,9 @@ const ToolCreatePage = async () => {
     const toolCategories = await apiClient.get<any[]>(`/admin/tool-categories`)
 
     /* eslint-disable @typescript-eslint/no-explicit-any */
+    const materials = await apiClient.get<any[]>(`/admin/materials`)
+
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     const toolImages = await apiClient.get<any[]>(`/admin/images?type=4`)
 
     return (
@@ -17,6 +20,7 @@ const ToolCreatePage = async () => {
             <Box p={4} bg='white' borderRadius='md' boxShadow='sm'>
                 <ToolCreate 
                     toolCategories={toolCategories}
+                    materials={materials}
                     toolImages={toolImages}
                 />
             </Box>

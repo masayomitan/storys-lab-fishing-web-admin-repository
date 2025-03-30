@@ -18,6 +18,7 @@ const ToolCategories = ({
     toolCategories,
     /* eslint-disable @typescript-eslint/no-explicit-any */
 }: any) => {
+    console.log(toolCategories)
     const router = useRouter()
     const [deleteDialog, setDeleteDialog] = useState<string | null>(null)
     const {
