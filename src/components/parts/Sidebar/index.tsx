@@ -66,6 +66,13 @@ const menuItems: MenuItem[] = [
         ],
       },
       {
+        label: '料理',
+        links: [
+          { label: '料理一覧', href: '/dishes' },
+          { label: '料理登録', href: '/dishes/create' },
+        ],
+      },
+      {
         label: 'イベント(作成中)',
         links: [
           { label: 'イベント一覧', href: '#event-list' },
