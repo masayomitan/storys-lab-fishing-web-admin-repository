@@ -33,7 +33,7 @@ type AreaFormData = z.infer<typeof areaSchema>
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const AreaCreate = ({ areaImages, prefectures }: any) => {
-  const [selectedImages, setSelectedImages] = useState<[]>([])
+	const [selectedImages, setSelectedImages] = useState<[]>([])
 
 	const {
 		register,

@@ -13,6 +13,7 @@ import {
     Fieldset,
     Input,
     Stack,
+    Table,
 } from '@chakra-ui/react'
 import { createListCollection } from '@chakra-ui/react'
 import {
@@ -22,16 +23,40 @@ import {
     SelectTrigger,
     SelectValueText,
 } from '@/components/ui/select'
+
 import { Field } from '@/components/ui/field'
 import { fishSchema } from './constant'
 import { useUpdateFish } from './logic'
 import SetImages from '@/components/parts/Modal/setImages'
+// import { useCreateFish } from '../../fish/create/logic'
 
 type FishFormData = z.infer<typeof fishSchema>
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const FishUpdate = ({ fish, fishCategories, fishImages }: any) => {
+const FishUpdate = ({ fish, fishCategories, fishImages, dishes }: any) => {
+    console.log(fish)
     const [selectedImages, setSelectedImages] = useState(fish.Images || [])
+
+    const [selectedDishIds, setSelectedDishIds] = useState<number[]>(
+        fish.Dishes?.map((dish: any) => dish.id) || []
+    )
+    const isAllSelected = dishes.length > 0 && selectedDishIds.length === dishes.length
+
+    const handleToggleAll = () => {
+        if (isAllSelected) {
+            setSelectedDishIds([])
+        } else {
+        setSelectedDishIds(dishes.map((dish: any) => dish.id))
+        }
+    }
+
+    const handleToggleDish = (dishId: number) => {
+        setSelectedDishIds((prev) =>
+            prev.includes(dishId)
+                ? prev.filter((id) => id !== dishId) // 解除
+                : [...prev, dishId] // 追加
+        )
+    }
 
     const {
         register,
@@ -41,7 +66,7 @@ const FishUpdate = ({ fish, fishCategories, fishImages }: any) => {
         formState: { errors },
     } = useForm<FishFormData>({
         resolver: zodResolver(fishSchema),
-            defaultValues: {
+        defaultValues: {
             name: fish.name || '',
             scientific_name: fish.scientific_name || '',
             description: fish.description || '',
@@ -57,7 +82,10 @@ const FishUpdate = ({ fish, fishCategories, fishImages }: any) => {
         },
     })
 
-    const { handleUpdateRequest } = useUpdateFish()
+    const { 
+        handleUpdateRequest,
+        handleRelationUpdateRequest,
+    } = useUpdateFish()
 
     // TODO 選択動作がおかしい
     const handleImageSelect = (imageIds: number[]) => {
@@ -290,6 +318,50 @@ const FishUpdate = ({ fish, fishCategories, fishImages }: any) => {
             <Button type='submit' colorScheme='blue' w='full' mt={4}>
                 更新
             </Button>
+        </form>
+
+        <form onSubmit={(e) => {
+            e.preventDefault()
+            handleRelationUpdateRequest(fish.id, { dish_ids: selectedDishIds })
+        }}>
+            {/* 料理リスト */}
+            <Box flex="1" border="1px solid #ddd" borderRadius="md" p={4}>
+                <Text fontWeight="bold" mb={4}>紐付ける料理</Text>
+                <Table.Root size="sm" striped showColumnBorder>
+                    <Table.Header>
+                        <Table.Row>
+                            <Table.ColumnHeader>
+                                <input
+                                    type="checkbox"
+                                    checked={isAllSelected}
+                                    onChange={handleToggleAll}
+                                />
+                            </Table.ColumnHeader>
+                            <Table.ColumnHeader>ID</Table.ColumnHeader>
+                            <Table.ColumnHeader>名称</Table.ColumnHeader>
+                        </Table.Row>
+                    </Table.Header>
+
+                    <Table.Body>
+                        {dishes.map((dish: any) => (
+                            <Table.Row key={dish.id}>
+                                <Table.Cell>
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedDishIds.includes(dish.id)}
+                                        onChange={() => handleToggleDish(dish.id)}
+                                    />
+                                </Table.Cell>
+                                <Table.Cell>{dish.id}</Table.Cell>    
+                                <Table.Cell>{dish.name}</Table.Cell>    
+                            </Table.Row>
+                        ))}
+                    </Table.Body>
+                </Table.Root>
+                <Button type='submit' colorScheme='blue' w='full' mt={4}>
+                    登録
+                </Button>
+            </Box>
         </form>
     </Box>
     )

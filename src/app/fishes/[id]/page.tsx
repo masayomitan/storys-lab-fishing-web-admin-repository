@@ -33,28 +33,30 @@ interface FishUpdatePageProps {
 const FishUpdatePage = async ({ params }: FishUpdatePageProps) => {
     const { id } = await params
 
-    // 魚カテゴリデータを取得
     /* eslint-disable @typescript-eslint/no-explicit-any */
     const fishCategories = await apiClient.get<any[]>('/admin/fish-categories',)
 
-    // 指定された魚データを取得
     /* eslint-disable @typescript-eslint/no-explicit-any */
     const fish = await apiClient.get<any[]>(`/admin/fishes/${id}`)
+
+	/* eslint-disable @typescript-eslint/no-explicit-any */
+	const dishes = await apiClient.get<any[]>(`/admin/dishes`)
 
     /* eslint-disable @typescript-eslint/no-explicit-any */
     const fishImages = await apiClient.get<any[]>(`/admin/images?type=1`)
 
-  return (
-    <Layout>
-      <Box p={4} bg="white" borderRadius="md" boxShadow="sm">
-        <FishUpdate 
-          fish={fish}
-          fishCategories={fishCategories}
-          fishImages={fishImages}
-        />
-      </Box>
-    </Layout>
-  )
+	return (
+		<Layout>
+			<Box p={4} bg="white" borderRadius="md" boxShadow="sm">
+				<FishUpdate 
+					fish={fish}
+					fishCategories={fishCategories}
+					fishImages={fishImages}
+					dishes={dishes}
+				/>
+			</Box>
+		</Layout>
+	)
 }
 
 export default FishUpdatePage

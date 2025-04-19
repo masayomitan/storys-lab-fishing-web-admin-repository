@@ -28,6 +28,7 @@ const IMAGE_TYPES = [
   { value: 2, label: 'エリア' },
   { value: 3, label: '釣り場' },
   { value: 4, label: '道具' },
+  { value: 5, label: '料理' },
 ]
 
 const ImageAdd = () => {
@@ -50,6 +51,7 @@ const ImageAdd = () => {
       { label: 'エリア', value: 2 },
       { label: '釣り場', value: 3 },
       { label: '道具', value: 4 },
+      { label: '料理', value: 5 },
     ]
   })
 
